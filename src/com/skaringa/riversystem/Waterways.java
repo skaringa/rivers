@@ -19,7 +19,8 @@ public class Waterways {
 
 	private Map<Long, String> id2Basin = new HashMap<Long, String>();
 	
-	private Map<Integer, Long> index2Id = new HashMap<Integer, Long>();
+	private long[] index2Id;
+	private boolean[] resolved;
 	
 	private Map<Long, Integer> id2Index = new HashMap<Long, Integer>();
 	
@@ -61,15 +62,12 @@ public class Waterways {
 		long[] refway = nodes[refWayIndex];
 		for (long refNodeId : refway) {
 			for (int i = 0; i < nodes.length; ++i) {
-				Long id = index2Id.get(i);
-				if (id2Basin.containsKey(id)) {
-					// already assigned
-					continue;
-				}
-				if (Arrays.binarySearch(nodes[i], refNodeId) >= 0) {
+				if (!resolved[i] && Arrays.binarySearch(nodes[i], refNodeId) >= 0) {
 					// found
+					long id = index2Id[i];
 					id2Basin.put(id, basin);
 					newIds.add(id);
+					resolved[i] = true;
 					continue;
 				}
 			}
@@ -82,15 +80,20 @@ public class Waterways {
 		JSONArray wwayArray = new JSONArray(tokener);
 		int wwayCount = wwayArray.length();
 		nodes = new long[wwayCount][];
+		index2Id = new long[wwayCount];
+		resolved = new boolean[wwayCount];
 		for (int i = 0; i < wwayCount; ++i) {
 			JSONObject wway = wwayArray.getJSONObject(i);
 			long id = wway.getLong("id");
-			index2Id.put(i, id);
+			index2Id[i] = id;
 			id2Index.put(id, i);
 			nodes[i] = toSortedNodeList(wway.getJSONObject("nodes"));
 			String basin = WellknownRivers.getBasin(id);
 			if (basin != null) {
 				id2Basin.put(id, basin);
+				resolved[i] = true;
+			} else {
+				resolved[i] = false;
 			}
 		}
 	}
