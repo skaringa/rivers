@@ -1,12 +1,11 @@
 package com.skaringa.riversystem;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import org.json.JSONException;
-import org.json.JSONWriter;
 
 public class RiverSystems {
 
@@ -17,30 +16,36 @@ public class RiverSystems {
 	 */
 	public static void main(String[] args) throws JSONException, IOException {
 		File wwaysFile = new File("../../river/output/wways.json");
-		File rsystemsFile = new File("../../river/js/_riversystems.js");
+		File csvFile = new File("../../river/output/rsystems.csv");
+		File csvtFile = new File("../../river/output/rsystems.csvt");
 		
 		Waterways waterways = Waterways.loadFromJson(wwaysFile);
 		waterways.explore();
-		writeResult(rsystemsFile, waterways.getId2Basin());
-		System.out.println("Finished. Result file: " + rsystemsFile);
+		
+		writeCsvt(csvtFile);
+		writeCsv(csvFile, waterways.getId2Basin());
+		System.out.println("Finished.");
 	}
 
-	private static void writeResult(File rsystemsFile,
-			Map<Long, String> id2Basin) throws IOException, JSONException {
-		FileWriter writer = new FileWriter(rsystemsFile);
+	private static void writeCsvt(File csvtFile) throws IOException {
+		PrintWriter writer = new PrintWriter(csvtFile);
 		try {
-			writer.write("var riversystems = ");
-			JSONWriter jsonWriter = new JSONWriter(writer);
-			jsonWriter.object();
-			for (Map.Entry<Long, String> entry : id2Basin.entrySet()) {
-				jsonWriter.key(entry.getKey().toString());
-				jsonWriter.value(entry.getValue());
-			}
-			jsonWriter.endObject();
-			writer.write(";\n");
+			writer.println("\"Integer(10)\",\"String(32)\"");
 		} finally {
 			writer.close();
 		}
 	}
 
+	private static void writeCsv(File csvFile, Map<Long, String> id2Basin) throws IOException, JSONException {
+		PrintWriter writer = new PrintWriter(csvFile);
+		try {
+			writer.println("id,rsystem");
+			for (Map.Entry<Long, String> entry : id2Basin.entrySet()) {
+				writer.printf("%d,%s%n", entry.getKey(), entry.getValue());
+			}
+		} finally {
+			writer.close();
+		}
+		System.out.println("Result file: " + csvFile);
+	}
 }
