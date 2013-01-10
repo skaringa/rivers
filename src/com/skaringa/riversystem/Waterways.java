@@ -70,7 +70,7 @@ public class Waterways {
 			try {
 				t.join();
 			} catch (InterruptedException e) {
-				System.out.println("Interrupt.");
+				System.err.println("Interrupt.");
 			}
 		}
 	}
@@ -115,6 +115,9 @@ public class Waterways {
 				resolved[i] = true;
 			} else {
 				resolved[i] = false;
+			}
+			if (WellknownRivers.isDivide(id)) {
+				resolved[i] = true;
 			}
 		}
 		System.out.printf("Loaded %d ways.%n", wwayCount);

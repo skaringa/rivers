@@ -1,7 +1,9 @@
 package com.skaringa.riversystem;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class WellknownRivers {
 	
@@ -25,7 +27,19 @@ public class WellknownRivers {
 		id2Basin.put(36054759L, "Maas"); // Rur
 	}
 
-	public static String getBasin(long riverId) {
+	// Waterways that are drainage divides
+	static Set<Long> divides;
+	static {
+		divides = new HashSet<Long>();
+		divides.add(29915851L); // Main-Donau-Kanal
+		divides.add(30417811L); // Nord-Ostsee-Kanal
+	}
+	
+	public static String getBasin(Long riverId) {
 		return id2Basin.get(riverId);
+	}
+	
+	public static boolean isDivide(Long riverId) {
+		return divides.contains(riverId);
 	}
 }
