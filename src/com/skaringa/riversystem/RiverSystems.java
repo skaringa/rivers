@@ -25,6 +25,7 @@ public class RiverSystems {
 		
 		writeCsvt(csvtFile);
 		writeCsv(csvFile, waterways.getId2Basin());
+
 		System.out.printf("Finished. Time: %d s%n", (System.currentTimeMillis() - ts) / 1000);
 	}
 
