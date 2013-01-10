@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ import org.json.JSONTokener;
 
 public class Waterways {
 
-	private Map<Long, String> id2Basin = new HashMap<Long, String>();
+	private Map<Long, String> id2Basin = Collections.synchronizedMap(new HashMap<Long, String>());
 	
 	private long[] index2Id;
 	private boolean[] resolved;
@@ -35,7 +36,6 @@ public class Waterways {
 		} finally {
 			in.close();
 		}
-		
 		return waterways;
 	}
 	
@@ -44,15 +44,35 @@ public class Waterways {
 	}
 	
 	public void explore() {
-		List<Long> testIds = new LinkedList<Long>(id2Basin.keySet());
-		do {
-			List<Long> newIds = new LinkedList<Long>();
-			for (Long id : testIds) {
-				newIds.addAll(exploreNodes(id));
+		LinkedList<Thread> threadList = new LinkedList<Thread>();
+		List<Long> rootIds = new LinkedList<Long>(id2Basin.keySet());
+		for (final Long id : rootIds) {
+			Thread t = new Thread() {
+				@Override
+				public void run() {
+					System.out.printf("Thread %d start.%n", id);
+					List<Long> newIds = exploreNodes(id);
+					while (! newIds.isEmpty()) {
+						System.out.printf("Found %d new ways%n", newIds.size());
+						List<Long> testIds = newIds;
+						newIds = new LinkedList<Long>();
+						for (Long tid : testIds) {
+							newIds.addAll(exploreNodes(tid));
+						}
+					}
+					System.out.printf("Thread %d end.%n", id);
+				}
+			};
+			threadList.add(t);
+			t.start();
+		}
+		for (Thread t : threadList) {
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				System.out.println("Interrupt.");
 			}
-			testIds = newIds;
-			System.out.printf("Found %d new ways%n", testIds.size());
-		} while (! testIds.isEmpty());
+		}
 	}
 	
 	private List<Long> exploreNodes(Long wayid) {
@@ -60,15 +80,16 @@ public class Waterways {
 		int refWayIndex = id2Index.get(wayid);
 		String basin = id2Basin.get(wayid);
 		long[] refway = nodes[refWayIndex];
-		for (long refNodeId : refway) {
-			for (int i = 0; i < nodes.length; ++i) {
-				if (!resolved[i] && Arrays.binarySearch(nodes[i], refNodeId) >= 0) {
+		for (int i = 0; i < nodes.length; ++i) {
+			if (resolved[i]) continue;
+			for (long refNodeId : refway) {
+				if (Arrays.binarySearch(nodes[i], refNodeId) >= 0) {
 					// found
 					long id = index2Id[i];
 					id2Basin.put(id, basin);
 					newIds.add(id);
 					resolved[i] = true;
-					continue;
+					break;
 				}
 			}
 		}
@@ -96,6 +117,7 @@ public class Waterways {
 				resolved[i] = false;
 			}
 		}
+		System.out.printf("Loaded %d ways.%n", wwayCount);
 	}
 
 	private long[] toSortedNodeList(JSONObject nodes) throws JSONException {
