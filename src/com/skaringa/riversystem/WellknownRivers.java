@@ -19,6 +19,7 @@ public class WellknownRivers {
 		id2Basin.put(4308645L, "Ems");
 		id2Basin.put(5011091L, "Donau");
 		id2Basin.put(30613639L, "Elbe");
+		id2Basin.put(118848751L, "Elbe"); // Eger
 		id2Basin.put(89253786L, "Oder");
 		id2Basin.put(156293030L, "Warnow");
 		id2Basin.put(5005413L, "Trave");
@@ -33,6 +34,16 @@ public class WellknownRivers {
 		divides = new HashSet<Long>();
 		divides.add(29915851L); // Main-Donau-Kanal
 		divides.add(30417811L); // Nord-Ostsee-Kanal
+		divides.add(103423760L); // Elbe-Lübeck-Kanal
+		divides.add(30378663L); // Mittellandkanal
+		divides.add(169698060L); // Elbe-Seitenkanal
+		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
+		divides.add(43861716L); // Oder-Spree-Kanal
+		divides.add(27036866L); // Oste-Hamme-Kanal
+		divides.add(30568943L); // Burgsittenser Bach 
+		divides.add(166599679L); // Finowkanal
+		divides.add(35898720L); // Oder-Havel-Kanal
+		divides.add(28631513L); // Geeste Kanal - Schifffahrtsweg Elbe/Weser 
 	}
 	
 	public static String getBasin(Long riverId) {
