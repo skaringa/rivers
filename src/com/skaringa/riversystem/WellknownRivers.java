@@ -15,6 +15,7 @@ public class WellknownRivers {
 	static {
 		id2Basin = new HashMap<Long, String>();
 		id2Basin.put(102135980L, "Rhein");
+		id2Basin.put(157538529L, "Rhein"); // Bodensee
 		id2Basin.put(128043705L, "Weser");
 		id2Basin.put(4308645L, "Ems");
 		id2Basin.put(5011091L, "Donau");
@@ -35,6 +36,7 @@ public class WellknownRivers {
 		divides.add(29915851L); // Main-Donau-Kanal
 		divides.add(30417811L); // Nord-Ostsee-Kanal
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
+		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
 		divides.add(169698060L); // Elbe-Seitenkanal
 		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
@@ -44,6 +46,8 @@ public class WellknownRivers {
 		divides.add(166599679L); // Finowkanal
 		divides.add(35898720L); // Oder-Havel-Kanal
 		divides.add(28631513L); // Geeste Kanal - Schifffahrtsweg Elbe/Weser 
+		divides.add(25410328L); // Else-Hase-Bifurkation
+		divides.add(49213928L); // Dortmund-Ems-Kanal
 	}
 	
 	public static String getBasin(Long riverId) {
