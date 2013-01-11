@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,11 @@ public class Waterways {
 	private Map<Long, Integer> id2Index = new HashMap<Long, Integer>();
 	
 	private long[][] nodes;
+	
+	private static final int N_THREADS = 8;
+	private LinkedBlockingQueue<Long> queue = new LinkedBlockingQueue<Long>();
+	private int waiters;
+	boolean running = true;
 	
 	public static Waterways loadFromJson(File jsonFile) throws JSONException, IOException {
 		Waterways waterways = new Waterways();
@@ -44,33 +50,34 @@ public class Waterways {
 	}
 	
 	public void explore() {
-		LinkedList<Thread> threadList = new LinkedList<Thread>();
-		List<Long> rootIds = new LinkedList<Long>(id2Basin.keySet());
-		for (final Long id : rootIds) {
-			Thread t = new Thread() {
-				@Override
-				public void run() {
-					System.out.printf("Thread %d start.%n", id);
-					List<Long> newIds = exploreNodes(id);
-					while (! newIds.isEmpty()) {
-						System.out.printf("Found %d new ways%n", newIds.size());
-						List<Long> testIds = newIds;
-						newIds = new LinkedList<Long>();
-						for (Long tid : testIds) {
-							newIds.addAll(exploreNodes(tid));
-						}
-					}
-					System.out.printf("Thread %d end.%n", id);
-				}
-			};
-			threadList.add(t);
-			t.start();
+		for (Long id : id2Basin.keySet()) {
+			queue.offer(id);
 		}
-		for (Thread t : threadList) {
+		
+		LinkedList<Thread> threadList = new LinkedList<Thread>();
+		for (int i = 0; i < N_THREADS; ++i) {
+			Thread explorer = new Explorer();
+			threadList.add(explorer);
+			explorer.start();
+		}
+		
+		synchronized (queue) {
+			queue.notifyAll();
+		}
+		
+		for (;;) {
+			synchronized (queue) {
+				System.out.printf("Ways found: %d, queue size: %d, waiters: %d%n",
+						id2Basin.size(), queue.size(), waiters);
+				if (waiters == N_THREADS) {
+					running = false;
+					queue.notifyAll();
+					break;
+				}
+			}
 			try {
-				t.join();
+				Thread.sleep(2000L);
 			} catch (InterruptedException e) {
-				System.err.println("Interrupt.");
 			}
 		}
 	}
@@ -133,4 +140,37 @@ public class Waterways {
 		return nodeArray;
 	}
 
+	class Explorer extends Thread {
+
+		@Override
+		public void run() {
+			while (running) {
+				Long id;
+				synchronized (queue) {
+					if (queue.isEmpty()) {
+						try {
+							waiters++;
+							queue.wait();
+							waiters--;
+						} catch (InterruptedException e) {
+						}
+					}
+					id = queue.poll();
+				}
+				if (id == null) {
+					continue;
+				}
+
+				List<Long> newIds = exploreNodes(id);
+				if (!newIds.isEmpty()) {
+					synchronized (queue) {
+						for (Long nid : newIds) {
+							queue.offer(nid);
+							queue.notify();
+						}
+					}
+				}
+			}
+		}
+	}
 }
