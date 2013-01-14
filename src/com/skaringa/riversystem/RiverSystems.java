@@ -45,6 +45,10 @@ public class RiverSystems {
 			for (Map.Entry<Long, String> entry : id2Basin.entrySet()) {
 				writer.printf("%d,%s%n", entry.getKey(), entry.getValue());
 			}
+			// divides
+			for (Long id : WellknownRivers.divides) {
+				writer.printf("%d,divide%n", id);
+			}
 		} finally {
 			writer.close();
 		}
