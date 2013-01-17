@@ -23,6 +23,7 @@ public class WellknownRivers {
 		id2Basin.put(118848751L, "Elbe"); // Eger
 		id2Basin.put(89253786L, "Oder");
 		id2Basin.put(156293030L, "Warnow");
+		id2Basin.put(4532243L, "Peene");
 		id2Basin.put(5005413L, "Trave");
 		id2Basin.put(4267187L, "Schlei");
 		id2Basin.put(5011995L, "Eider");
