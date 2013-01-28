@@ -23,6 +23,7 @@ public class WellknownRivers {
 		id2Basin.put(118848751L, "Elbe"); // Eger
 		id2Basin.put(89253786L, "Oder");
 		id2Basin.put(156293030L, "Warnow");
+		id2Basin.put(161734566L, "Warnow"); // Recknitz
 		id2Basin.put(4532243L, "Peene");
 		id2Basin.put(5005413L, "Trave");
 		id2Basin.put(4267187L, "Schlei");
@@ -39,6 +40,7 @@ public class WellknownRivers {
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
+		divides.add(112674007L); // Fanggraben
 		divides.add(169698060L); // Elbe-Seitenkanal
 		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
 		divides.add(43861716L); // Oder-Spree-Kanal
@@ -50,6 +52,8 @@ public class WellknownRivers {
 		divides.add(25410328L); // Else-Hase-Bifurkation
 		divides.add(49213928L); // Dortmund-Ems-Kanal
 		divides.add(70681602L); // Küstenkanal
+		divides.add(160029569L); // Luttertunnel Bielefeld
+		divides.add(116711212L); // Haselbachstollen 
 	}
 	
 	public static String getBasin(Long riverId) {

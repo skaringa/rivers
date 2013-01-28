@@ -41,13 +41,19 @@ public class JoinCsv {
 	 * @throws SchemaException
 	 */
 	public static void main(String[] args) throws IOException, SchemaException {
+		if (args.length != 3) {
+			System.out.printf("Usage: java %s <input_shp_file> <input_csv_file> <output_shp_file%n", 
+					JoinCsv.class.getName());
+			System.exit(1);
+		}
+
 		JoinCsv joinCsv = new JoinCsv();
 
-		joinCsv.openInputShapefile();
-		joinCsv.readInputCsv();
+		joinCsv.openInputShapefile(args[0]);
+		joinCsv.readInputCsv(args[1]);
 		joinCsv.createFeatureBuilder();
 		List<SimpleFeature> featuresOut = joinCsv.process();
-		joinCsv.writeOutputShapefile(featuresOut);
+		joinCsv.writeOutputShapefile(featuresOut, args[2]);
 	}
 
 	private List<SimpleFeature> process() throws IOException {
@@ -74,8 +80,8 @@ public class JoinCsv {
 		return featuresOut;
 	}
 
-	private void openInputShapefile() throws IOException {
-		File file = new File("../../river/output/waterways.shp");
+	private void openInputShapefile(String inputShapefile) throws IOException {
+		File file = new File(inputShapefile);
 		FileDataStore store = FileDataStoreFinder.getDataStore(file);
 		featureSource = store.getFeatureSource();
 
@@ -84,8 +90,8 @@ public class JoinCsv {
 				+ DataUtilities.encodeType(schema));
 	}
 	
-	private void readInputCsv() throws IOException {
-		File file = new File("../../river/output/rsystems.csv");
+	private void readInputCsv(String inputCsvfile) throws IOException {
+		File file = new File(inputCsvfile);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		id2Basin = new HashMap<Long, String>();
         try {
@@ -116,9 +122,9 @@ public class JoinCsv {
 		featureBuilder = new SimpleFeatureBuilder(outputType);
 	}
 
-	private void writeOutputShapefile(List<SimpleFeature> features)
+	private void writeOutputShapefile(List<SimpleFeature> features, String outputShapefile)
 			throws IOException {
-		File file = new File("../../river/output/waterways-r.shp");
+		File file = new File(outputShapefile);
 
 		ShapefileDataStoreFactory dataStoreFactory = new ShapefileDataStoreFactory();
 

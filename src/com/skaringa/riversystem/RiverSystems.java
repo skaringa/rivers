@@ -15,10 +15,15 @@ public class RiverSystems {
 	 * @throws JSONException 
 	 */
 	public static void main(String[] args) throws JSONException, IOException {
+		if (args.length != 2) {
+			System.out.printf("Usage: java %s <input_json_file> <output_csv_file>%n", RiverSystems.class.getName());
+			System.exit(1);
+		}
+		
 		long ts = System.currentTimeMillis();
-		File wwaysFile = new File("../../river/output/wways.json");
-		File csvFile = new File("../../river/output/rsystems.csv");
-		File csvtFile = new File("../../river/output/rsystems.csvt");
+		File wwaysFile = new File(args[0]);
+		File csvFile = new File(args[1]);
+		File csvtFile = new File(args[1] + "t");
 		
 		Waterways waterways = Waterways.loadFromJson(wwaysFile);
 		waterways.explore();
