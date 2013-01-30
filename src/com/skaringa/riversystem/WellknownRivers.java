@@ -7,10 +7,7 @@ import java.util.Set;
 
 public class WellknownRivers {
 	
-	/* Funktioniert nicht, weil Namen mehrfach vorkommen (z.B: "Elbe" bei Fritzlar)!
-	public static Set<String> basinNames = new HashSet<String>(Arrays.asList(
-			"Rhein", "Weser", "Ems", "Donau", "Elbe", "Oder", "Warnow", "Schlei", "Eider", "Maas"));
-	*/
+	// Map IDs of wellknown rivers to their basin name
 	static Map<Long, String> id2Basin;
 	static {
 		id2Basin = new HashMap<Long, String>();
@@ -23,11 +20,14 @@ public class WellknownRivers {
 		id2Basin.put(118848751L, "Elbe"); // Eger
 		id2Basin.put(89253786L, "Oder");
 		id2Basin.put(156293030L, "Warnow");
+		id2Basin.put(161734566L, "Warnow"); // Recknitz
 		id2Basin.put(4532243L, "Peene");
 		id2Basin.put(5005413L, "Trave");
 		id2Basin.put(4267187L, "Schlei");
 		id2Basin.put(5011995L, "Eider");
 		id2Basin.put(36054759L, "Maas"); // Rur
+		id2Basin.put(9332131L, "Maas"); // Niers
+		id2Basin.put(25680743L, "Maas"); // Schwalm
 	}
 
 	// Waterways that are drainage divides
@@ -39,6 +39,7 @@ public class WellknownRivers {
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
+		divides.add(112674007L); // Fanggraben
 		divides.add(169698060L); // Elbe-Seitenkanal
 		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
 		divides.add(43861716L); // Oder-Spree-Kanal
@@ -50,6 +51,8 @@ public class WellknownRivers {
 		divides.add(25410328L); // Else-Hase-Bifurkation
 		divides.add(49213928L); // Dortmund-Ems-Kanal
 		divides.add(70681602L); // Küstenkanal
+		divides.add(160029569L); // Luttertunnel Bielefeld
+		divides.add(116711212L); // Haselbachstollen 
 	}
 	
 	public static String getBasin(Long riverId) {
