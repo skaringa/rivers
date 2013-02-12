@@ -23,7 +23,11 @@ public class WellknownRivers {
 		id2Basin.put(161734566L, "Warnow"); // Recknitz
 		id2Basin.put(4532243L, "Peene");
 		id2Basin.put(5005413L, "Trave");
+		id2Basin.put(29249972L, "Trave"); // Schwentine
+		id2Basin.put(104383228L, "Trave"); // Stepenitz 
 		id2Basin.put(4267187L, "Schlei");
+		id2Basin.put(98726563L, "Eider"); // Arlau
+		id2Basin.put(52997220L, "Eider"); // Miele
 		id2Basin.put(5011995L, "Eider");
 		id2Basin.put(36054759L, "Maas"); // Rur
 		id2Basin.put(9332131L, "Maas"); // Niers
