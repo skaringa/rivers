@@ -39,7 +39,7 @@ public class WellknownRivers {
 	static {
 		divides = new HashSet<Long>();
 		divides.add(29915851L); // Main-Donau-Kanal
-		divides.add(30417811L); // Nord-Ostsee-Kanal
+		divides.add(50250427L); // Nord-Ostsee-Kanal
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
