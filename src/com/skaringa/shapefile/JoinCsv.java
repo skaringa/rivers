@@ -24,9 +24,12 @@ import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
+import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+
+import com.vividsolutions.jts.geom.MultiLineString;
 
 public class JoinCsv {
 
@@ -65,8 +68,8 @@ public class JoinCsv {
 			while (iterator.hasNext()) {
 				SimpleFeature feature = iterator.next();
 				featureBuilder.add(feature.getAttribute("the_geom"));
-				Long id = (Long) feature.getAttribute("id");
-				featureBuilder.add(id);
+				Long id = Long.valueOf((String) feature.getAttribute("id"));
+				featureBuilder.add(id.toString());
 				featureBuilder.add(feature.getAttribute("type"));
 				featureBuilder.add(feature.getAttribute("name"));
 				featureBuilder.add(id2Basin.get(id));
@@ -114,10 +117,22 @@ public class JoinCsv {
 	}
 
 	private void createFeatureBuilder() throws SchemaException {
-		outputType = DataUtilities
+		/*outputType = DataUtilities
 				.createType(
 						"waterways",
-						"the_geom:MultiLineString,id:java.lang.Long,type:String,name:String,rsystem:String");
+						"the_geom:MultiLineString,id:String,type:String,name:String,rsystem:String");*/
+						
+		SimpleFeatureTypeBuilder builder = new SimpleFeatureTypeBuilder();
+		builder.setName("waterways");
+		builder.setCRS(DefaultGeographicCRS.WGS84);
+		builder.add("the_geom", MultiLineString.class);
+		builder.length(12).add("id", String.class);
+		builder.length(32).add("type", String.class);
+		builder.length(32).add("name", String.class);
+		builder.length(16).add("rsystem", String.class);
+		builder.setDefaultGeometry("the_geom");
+
+		outputType = builder.buildFeatureType();
 
 		featureBuilder = new SimpleFeatureBuilder(outputType);
 	}
@@ -140,7 +155,7 @@ public class JoinCsv {
 		 * You can comment out this line if you are using the createFeatureType
 		 * method (at end of class file) rather than DataUtilities.createType
 		 */
-		newDataStore.forceSchemaCRS(DefaultGeographicCRS.WGS84);
+		//newDataStore.forceSchemaCRS(DefaultGeographicCRS.WGS84);
 
 		/*
 		 * Write the features to the shapefile
