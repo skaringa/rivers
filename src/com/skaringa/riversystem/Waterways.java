@@ -33,6 +33,21 @@ public class Waterways {
 	private int waiters;
 	boolean running = true;
 	
+	public static Waterways loadFromJson(List<File> jsonFileList) throws JSONException, IOException {
+		Waterways allWaterways = null;
+		
+		for (File jsonFile : jsonFileList) {
+			Waterways waterways = loadFromJson(jsonFile);
+			if (allWaterways == null) {
+				allWaterways = waterways;
+			} else {
+				allWaterways.merge(waterways);
+			}
+		}
+		
+		return allWaterways;
+	}
+	
 	public static Waterways loadFromJson(File jsonFile) throws JSONException, IOException {
 		Waterways waterways = new Waterways();
 		
@@ -113,6 +128,11 @@ public class Waterways {
 		for (int i = 0; i < wwayCount; ++i) {
 			JSONObject wway = wwayArray.getJSONObject(i);
 			long id = wway.getLong("id");
+			if ("relation".equals(wway.optString("from"))) {
+				id /= 2; // restore original OSM id
+			} else if ("way".equals(wway.optString("from"))) {
+				id /= 2; // restore original OSM id
+			}
 			index2Id[i] = id;
 			id2Index.put(id, i);
 			nodes[i] = toSortedNodeList(wway.getJSONObject("nodes"));
@@ -128,6 +148,32 @@ public class Waterways {
 			}
 		}
 		System.out.printf("Loaded %d ways.%n", wwayCount);
+	}
+
+	private void merge(Waterways waterways) {
+		id2Basin.putAll(waterways.id2Basin);
+		int oldLen = nodes.length;
+		int addLen = waterways.nodes.length;
+		int newLen = oldLen + addLen;
+		
+		long[][] nodes2 = new long[newLen][];
+		System.arraycopy(nodes, 0, nodes2, 0, oldLen);
+		System.arraycopy(waterways.nodes, 0, nodes2, oldLen, addLen);
+		nodes = nodes2;
+		
+		long[] index2Id2 = new long[newLen];
+		System.arraycopy(index2Id, 0, index2Id2, 0, oldLen);
+		System.arraycopy(waterways.index2Id, 0, index2Id2, oldLen, addLen);
+		index2Id = index2Id2;
+		
+		boolean[] resolved2 = new boolean[newLen];
+		System.arraycopy(resolved, 0, resolved2, 0, oldLen);
+		System.arraycopy(waterways.resolved, 0, resolved2, oldLen, addLen);
+		resolved = resolved2;
+		
+		for (Map.Entry<Long, Integer> e : waterways.id2Index.entrySet()) {
+			id2Index.put(e.getKey(), e.getValue() + oldLen);
+		}
 	}
 
 	private long[] toSortedNodeList(JSONObject nodes) throws JSONException {

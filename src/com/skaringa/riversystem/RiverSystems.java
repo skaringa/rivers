@@ -3,6 +3,8 @@ package com.skaringa.riversystem;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
@@ -15,17 +17,21 @@ public class RiverSystems {
 	 * @throws JSONException 
 	 */
 	public static void main(String[] args) throws JSONException, IOException {
-		if (args.length != 2) {
-			System.out.printf("Usage: java %s <input_json_file> <output_csv_file>%n", RiverSystems.class.getName());
+		if (args.length < 2) {
+			System.out.printf("Usage: java %s <input_json_file_1> [<input_json_file_2> ...] <output_csv_file>%n", RiverSystems.class.getName());
 			System.exit(1);
 		}
 		
 		long ts = System.currentTimeMillis();
-		File wwaysFile = new File(args[0]);
-		File csvFile = new File(args[1]);
-		File csvtFile = new File(args[1] + "t");
 		
-		Waterways waterways = Waterways.loadFromJson(wwaysFile);
+		List<File> inputFileList = new LinkedList<File>();
+		for (int i = 0; i < args.length - 1; ++i) {
+			inputFileList.add(new File(args[i]));
+		}
+		File csvFile = new File(args[args.length - 1]);
+		File csvtFile = new File(args[args.length - 1] + "t");
+		
+		Waterways waterways = Waterways.loadFromJson(inputFileList);
 		waterways.explore();
 		
 		writeCsvt(csvtFile);
