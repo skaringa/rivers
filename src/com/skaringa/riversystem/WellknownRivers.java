@@ -40,12 +40,14 @@ public class WellknownRivers {
 		divides = new HashSet<Long>();
 		divides.add(29915851L); // Main-Donau-Kanal
 		divides.add(30417811L); // Nord-Ostsee-Kanal
+		divides.add(176010294L); // Schaalseekanal
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
 		divides.add(112674007L); // Fanggraben
 		divides.add(169698060L); // Elbe-Seitenkanal
 		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
+		divides.add(5120607L); // Altmühlüberleiter
 		divides.add(43861716L); // Oder-Spree-Kanal
 		divides.add(27036866L); // Oste-Hamme-Kanal
 		divides.add(30568943L); // Burgsittenser Bach 
