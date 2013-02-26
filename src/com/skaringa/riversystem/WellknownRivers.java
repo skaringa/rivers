@@ -13,6 +13,9 @@ public class WellknownRivers {
 		id2Basin = new HashMap<Long, String>();
 		id2Basin.put(102135980L, "Rhein");
 		id2Basin.put(157538529L, "Rhein"); // Bodensee
+		id2Basin.put(26970429L, "Rhein"); // Berkel
+		id2Basin.put(32965156L, "Rhein"); // Issel
+		id2Basin.put(52528188L, "Rhein"); // Dinkel
 		id2Basin.put(128043705L, "Weser");
 		id2Basin.put(4308645L, "Ems");
 		id2Basin.put(5011091L, "Donau");
