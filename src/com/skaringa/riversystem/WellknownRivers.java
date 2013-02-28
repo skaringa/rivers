@@ -16,6 +16,8 @@ public class WellknownRivers {
 		id2Basin.put(26970429L, "Rhein"); // Berkel
 		id2Basin.put(32965156L, "Rhein"); // Issel
 		id2Basin.put(52528188L, "Rhein"); // Dinkel
+		id2Basin.put(23452335L, "Rhein"); // Vechte
+		id2Basin.put(33655748L, "Rhein"); // Bocholter Aa
 		id2Basin.put(128043705L, "Weser");
 		id2Basin.put(4308645L, "Ems");
 		id2Basin.put(5011091L, "Donau");
@@ -44,6 +46,7 @@ public class WellknownRivers {
 		divides.add(29915851L); // Main-Donau-Kanal
 		divides.add(30417811L); // Nord-Ostsee-Kanal
 		divides.add(176010294L); // Schaalseekanal
+		divides.add(162105959L); // Störkanal
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
@@ -59,6 +62,8 @@ public class WellknownRivers {
 		divides.add(28631513L); // Geeste Kanal - Schifffahrtsweg Elbe/Weser 
 		divides.add(25410328L); // Else-Hase-Bifurkation
 		divides.add(49213928L); // Dortmund-Ems-Kanal
+		divides.add(48749385L); // Ems-Vechte-Kanal 
+		divides.add(28071866L); // Süd-Nord Kanal
 		divides.add(70681602L); // Küstenkanal
 		divides.add(160029569L); // Luttertunnel Bielefeld
 		divides.add(116711212L); // Haselbachstollen 
