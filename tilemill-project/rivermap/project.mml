@@ -1,0 +1,209 @@
+{
+  "bounds": [
+    5.6332,
+    47.1612,
+    15.2133,
+    55.0795
+  ],
+  "center": [
+    10.4672,
+    51.2357,
+    6
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 6,
+  "maxzoom": 12,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss",
+    "highway.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.99999692067183,
+        -85.051,
+        179.99999692067183,
+        83.66933299999998
+      ],
+      "id": "processed_p",
+      "class": "",
+      "Datasource": {
+        "file": "/home/ubuntu/world_boundaries/processed_p.shp"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "processed_p"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.99999692067183,
+        -85.051,
+        179.99999692067183,
+        83.66933299999998
+      ],
+      "id": "shoreline_300",
+      "class": "",
+      "Datasource": {
+        "file": "/home/ubuntu/world_boundaries/shoreline_300.shp"
+      },
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "shoreline_300"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        5.9964446,
+        47.5273301,
+        15.026407,
+        54.838069
+      ],
+      "id": "roads-outline",
+      "class": "highway line",
+      "Datasource": {
+        "file": "/home/ubuntu/output/roads.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "roads-outline"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        5.9964446,
+        47.5273301,
+        15.026407,
+        54.838069
+      ],
+      "id": "roads",
+      "class": "highway fill",
+      "Datasource": {
+        "file": "/home/ubuntu/output/roads.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "roads"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        5.9964446,
+        47.5273301,
+        15.026407,
+        54.838069
+      ],
+      "id": "highway-label",
+      "class": "highway-label",
+      "Datasource": {
+        "file": "/home/ubuntu/output/roads.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "highway-label"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        5.9965571,
+        47.4118318,
+        15.0426399,
+        54.9065808
+      ],
+      "id": "places",
+      "class": "location",
+      "Datasource": {
+        "file": "/home/ubuntu/output/places.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "places"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        5.8631179,
+        47.2738516,
+        15.3254865,
+        55.0315025
+      ],
+      "id": "water",
+      "class": "",
+      "Datasource": {
+        "file": "/home/ubuntu/output/water.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "water"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        5.831824,
+        47.2730202,
+        15.4041549,
+        54.9566355
+      ],
+      "id": "waterways",
+      "class": "",
+      "Datasource": {
+        "file": "/home/ubuntu/output/waterways-r.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "waterways"
+    },
+    {
+      "geometry": "raster",
+      "extent": [
+        4.999583333333334,
+        46.999583333333334,
+        16.000416666666666,
+        55.00041666666667
+      ],
+      "id": "hill-shade",
+      "class": "",
+      "Datasource": {
+        "file": "/home/ubuntu/output/germany-hs.tif"
+      },
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "advanced": {},
+      "name": "hill-shade"
+    },
+    {
+      "geometry": "raster",
+      "extent": [
+        4.999583333333334,
+        46.999583333333334,
+        16.000416666666666,
+        55.00041666666667
+      ],
+      "id": "color-relief",
+      "class": "",
+      "Datasource": {
+        "file": "/home/ubuntu/output/germany-cr.tif"
+      },
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "advanced": {},
+      "name": "color-relief"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "name": "",
+  "description": "",
+  "attribution": "Data 2013/02/22 CC-By-SA by <a href=\"http://openstreetmap.org\">OpenStreetMap</a>"
+}
