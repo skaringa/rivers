@@ -205,5 +205,5 @@
   "metatile": 2,
   "name": "",
   "description": "",
-  "attribution": "Data 2013/02/22 CC-By-SA by <a href=\"http://openstreetmap.org\">OpenStreetMap</a>"
+  "attribution": "Data @DATE@ &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
 }
