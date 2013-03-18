@@ -27,10 +27,16 @@ Map {
 }
 
 /* See the wiki for info:
-<http://wiki.openstreetmap.org/wiki/Mapnik#World_boundaries> */
+<http://wiki.openstreetmap.org/wiki/Mapnik#World_boundaries> 
 #shoreline_300[zoom<11],
 #processed_p[zoom>=11] {
   polygon-fill: @land;
+}
+*/
+/* See http://openstreetmapdata.com/data/land-polygons */
+#landpolygons {
+  polygon-fill: @land;
+  polygon-gamma: 0.2;
 }
 
 /* ----- RELIEF ----- */
