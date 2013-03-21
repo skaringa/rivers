@@ -93,24 +93,6 @@
       "name": "highway-label"
     },
     {
-      "geometry": "point",
-      "extent": [
-        5.9965571,
-        47.4118318,
-        15.0426399,
-        54.9065808
-      ],
-      "id": "places",
-      "class": "location",
-      "Datasource": {
-        "file": "/home/ubuntu/output/places.shp"
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "places"
-    },
-    {
       "geometry": "polygon",
       "extent": [
         5.8631179,
@@ -145,6 +127,27 @@
       "srs": "",
       "advanced": {},
       "name": "waterways"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        5.9965571,
+        47.4118318,
+        15.0426399,
+        54.9065808
+      ],
+      "id": "places",
+      "class": "location",
+      "Datasource": {
+        "file": "/home/ubuntu/output/places.shp",
+        "id": "places",
+        "project": "rivermap",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "places"
     },
     {
       "geometry": "raster",
