@@ -71,6 +71,7 @@ public class WellknownRivers {
 		divides.add(116711212L); // Haselbachstollen 
 		
 		divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
+		divides.add(81931306L); // unknown (Donau/Elbe)
 	}
 	
 	public static String getBasin(Long riverId) {
