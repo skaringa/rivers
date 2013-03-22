@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,31 +22,26 @@ public class Waterways {
 
 	private Map<Long, String> id2Basin = Collections.synchronizedMap(new HashMap<Long, String>());
 	
-	private long[] index2Id;
-	private boolean[] resolved;
-	
-	private Map<Long, Integer> id2Index = new HashMap<Long, Integer>();
-	
-	private long[][] nodes;
+	private Map<Long, List<Way>>  nodeId2WayList = new HashMap<Long, List<Way>>();
 	
 	private static final int N_THREADS = 8;
-	private LinkedBlockingQueue<Long> queue = new LinkedBlockingQueue<Long>();
+	private LinkedBlockingQueue<Way> queue = new LinkedBlockingQueue<Way>();
 	private int waiters;
 	boolean running = true;
 	
 	public static Waterways loadFromJson(List<File> jsonFileList) throws JSONException, IOException {
-		Waterways allWaterways = null;
+		Waterways waterways = new Waterways();
 		
 		for (File jsonFile : jsonFileList) {
-			Waterways waterways = loadFromJson(jsonFile);
-			if (allWaterways == null) {
-				allWaterways = waterways;
-			} else {
-				allWaterways.merge(waterways);
+			FileInputStream in = new FileInputStream(jsonFile);
+			try {
+				waterways.load(in);
+			} finally {
+				in.close();
 			}
 		}
 		
-		return allWaterways;
+		return waterways;
 	}
 	
 	public static Waterways loadFromJson(File jsonFile) throws JSONException, IOException {
@@ -65,10 +61,6 @@ public class Waterways {
 	}
 	
 	public void explore() {
-		for (Long id : id2Basin.keySet()) {
-			queue.offer(id);
-		}
-		
 		LinkedList<Thread> threadList = new LinkedList<Thread>();
 		for (int i = 0; i < N_THREADS; ++i) {
 			Thread explorer = new Explorer();
@@ -97,34 +89,27 @@ public class Waterways {
 		}
 	}
 	
-	private List<Long> exploreNodes(Long wayid) {
-		List<Long> newIds = new LinkedList<Long>();
-		int refWayIndex = id2Index.get(wayid);
-		String basin = id2Basin.get(wayid);
-		long[] refway = nodes[refWayIndex];
-		for (int i = 0; i < nodes.length; ++i) {
-			if (resolved[i]) continue;
-			for (long refNodeId : refway) {
-				if (Arrays.binarySearch(nodes[i], refNodeId) >= 0) {
-					// found
-					long id = index2Id[i];
-					id2Basin.put(id, basin);
-					newIds.add(id);
-					resolved[i] = true;
-					break;
+	private List<Way> exploreNodes(Way refway) {
+		List<Way> newWays = new LinkedList<Way>();
+		String basin = id2Basin.get(refway.id);
+		for (Long refNodeId : refway.nodeList) {
+			List<Way> wayList = nodeId2WayList.get(refNodeId);
+			for (Way way : wayList) {
+				if (way.resolved) {
+					continue;
 				}
+				id2Basin.put(way.id, basin);
+				way.resolved = true;
+				newWays.add(way);
 			}
 		}
-		return newIds;
+		return newWays;
 	}
 
 	private void load(InputStream in) throws JSONException {
 		JSONTokener tokener = new JSONTokener(in);
 		JSONArray wwayArray = new JSONArray(tokener);
 		int wwayCount = wwayArray.length();
-		nodes = new long[wwayCount][];
-		index2Id = new long[wwayCount];
-		resolved = new boolean[wwayCount];
 		for (int i = 0; i < wwayCount; ++i) {
 			JSONObject wway = wwayArray.getJSONObject(i);
 			long id = wway.getLong("id");
@@ -133,56 +118,35 @@ public class Waterways {
 			} else if ("way".equals(wway.optString("from"))) {
 				id /= 2; // restore original OSM id
 			}
-			index2Id[i] = id;
-			id2Index.put(id, i);
-			nodes[i] = toSortedNodeList(wway.getJSONObject("nodes"));
+			Long[] nodes = toNodeList(wway.getJSONObject("nodes"));
+			Way way = new Way(id, nodes);
 			String basin = WellknownRivers.getBasin(id);
 			if (basin != null) {
 				id2Basin.put(id, basin);
-				resolved[i] = true;
-			} else {
-				resolved[i] = false;
-			}
+				way.resolved = true;
+				queue.offer(way);
+			} 
 			if (WellknownRivers.isDivide(id)) {
-				resolved[i] = true;
+				way.resolved = true;
+			}
+			for (Long nodeId : nodes) {
+				List<Way> wayList = nodeId2WayList.get(nodeId);
+				if (wayList == null) {
+					wayList = new ArrayList<Way>();
+					nodeId2WayList.put(nodeId, wayList);
+				}
+				wayList.add(way);
 			}
 		}
 		System.out.printf("Loaded %d ways.%n", wwayCount);
 	}
 
-	private void merge(Waterways waterways) {
-		id2Basin.putAll(waterways.id2Basin);
-		int oldLen = nodes.length;
-		int addLen = waterways.nodes.length;
-		int newLen = oldLen + addLen;
-		
-		long[][] nodes2 = new long[newLen][];
-		System.arraycopy(nodes, 0, nodes2, 0, oldLen);
-		System.arraycopy(waterways.nodes, 0, nodes2, oldLen, addLen);
-		nodes = nodes2;
-		
-		long[] index2Id2 = new long[newLen];
-		System.arraycopy(index2Id, 0, index2Id2, 0, oldLen);
-		System.arraycopy(waterways.index2Id, 0, index2Id2, oldLen, addLen);
-		index2Id = index2Id2;
-		
-		boolean[] resolved2 = new boolean[newLen];
-		System.arraycopy(resolved, 0, resolved2, 0, oldLen);
-		System.arraycopy(waterways.resolved, 0, resolved2, oldLen, addLen);
-		resolved = resolved2;
-		
-		for (Map.Entry<Long, Integer> e : waterways.id2Index.entrySet()) {
-			id2Index.put(e.getKey(), e.getValue() + oldLen);
-		}
-	}
-
-	private long[] toSortedNodeList(JSONObject nodes) throws JSONException {
+	private Long[] toNodeList(JSONObject nodes) throws JSONException {
 		int nodeCount = nodes.getInt("length");
-		long[] nodeArray = new long[nodeCount];
+		Long[] nodeArray = new Long[nodeCount];
 		for (int i = 0; i < nodeCount; ++i) {
 			nodeArray[i] = nodes.getLong(String.valueOf(i));
 		}
-		Arrays.sort(nodeArray);
 		return nodeArray;
 	}
 
@@ -191,7 +155,7 @@ public class Waterways {
 		@Override
 		public void run() {
 			while (running) {
-				Long id;
+				Way way;
 				synchronized (queue) {
 					if (queue.isEmpty()) {
 						try {
@@ -201,17 +165,17 @@ public class Waterways {
 						} catch (InterruptedException e) {
 						}
 					}
-					id = queue.poll();
+					way = queue.poll();
 				}
-				if (id == null) {
+				if (way == null) {
 					continue;
 				}
 
-				List<Long> newIds = exploreNodes(id);
-				if (!newIds.isEmpty()) {
+				List<Way> newWay = exploreNodes(way);
+				if (!newWay.isEmpty()) {
 					synchronized (queue) {
-						for (Long nid : newIds) {
-							queue.offer(nid);
+						for (Way nw : newWay) {
+							queue.offer(nw);
 							queue.notify();
 						}
 					}
@@ -219,4 +183,16 @@ public class Waterways {
 			}
 		}
 	}
+	
+	static class Way {
+		Long id;
+		List<Long> nodeList;
+		boolean resolved;
+		
+		Way(Long id, Long[] nodes) {
+			this.id = id;
+			this.nodeList = Arrays.asList(nodes);
+		}
+	}
+
 }

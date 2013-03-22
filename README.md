@@ -44,7 +44,7 @@ workflow
     
 5. Run *rivers* with the JSON files to build the river basins: 
 
-        java -Xmx3000m -cp $cp com.skaringa.riversystem.RiverSystems wways.json wtr.json rsystems.csv 
+        java -Xmx5000m -cp $cp com.skaringa.riversystem.RiverSystems wways.json wtr.json rsystems.csv 
     
    This creates a CSV file that contains the mapping of the OSM way ID to the name of the river basin.
   
