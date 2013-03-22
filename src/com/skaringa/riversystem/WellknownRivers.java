@@ -37,6 +37,8 @@ public class WellknownRivers {
 		id2Basin.put(36054759L, "Maas"); // Rur
 		id2Basin.put(9332131L, "Maas"); // Niers
 		id2Basin.put(25680743L, "Maas"); // Schwalm
+		
+		id2Basin.put(64690374L, "Donau"); // Drau
 	}
 
 	// Waterways that are drainage divides
@@ -67,6 +69,8 @@ public class WellknownRivers {
 		divides.add(70681602L); // Küstenkanal
 		divides.add(160029569L); // Luttertunnel Bielefeld
 		divides.add(116711212L); // Haselbachstollen 
+		
+		divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
 	}
 	
 	public static String getBasin(Long riverId) {
