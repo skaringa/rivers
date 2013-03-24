@@ -148,3 +148,13 @@ Map {
   marker-line-color:black;
   marker-allow-overlap:false;
 }
+
+/* --- BORDER --- */
+.border[level=2] {
+  line-color:rgba(255,0,0,0.4);
+  line-join:round;
+  [zoom=6] {line-width:1; line-dasharray:4,2; }
+  [zoom=7] {line-width:1.5; line-dasharray:4,2; }
+  [zoom=8] {line-width:2; line-dasharray:4,4,2,2; }
+  [zoom>=9] {line-width:3; line-dasharray:6,6,3,3; }
+}

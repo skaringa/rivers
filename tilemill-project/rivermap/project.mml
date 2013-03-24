@@ -150,6 +150,27 @@
       "name": "places"
     },
     {
+      "geometry": "polygon",
+      "extent": [
+        5.8663153,
+        47.2701114,
+        15.0901061,
+        55.1175485
+      ],
+      "id": "boundaries",
+      "class": "border",
+      "Datasource": {
+        "file": "/home/ubuntu/output/boundaries.shp",
+        "id": "boundaries",
+        "project": "rivermap",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "boundaries"
+    },
+    {
       "geometry": "raster",
       "extent": [
         4.999583333333334,
