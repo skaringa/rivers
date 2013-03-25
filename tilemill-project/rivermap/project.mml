@@ -31,7 +31,7 @@
       "id": "landpolygons",
       "class": "",
       "Datasource": {
-        "file": "/home/ubuntu/land_polygons/land_polygons_cut.shp"
+        "file": "/home/ubuntu/rivermap/land_polygons/land_polygons_cut.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -49,7 +49,7 @@
       "id": "roads-outline",
       "class": "highway line",
       "Datasource": {
-        "file": "/home/ubuntu/output/roads.shp"
+        "file": "/home/ubuntu/rivermap/output/roads.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -67,7 +67,7 @@
       "id": "roads",
       "class": "highway fill",
       "Datasource": {
-        "file": "/home/ubuntu/output/roads.shp"
+        "file": "/home/ubuntu/rivermap/output/roads.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -85,7 +85,7 @@
       "id": "highway-label",
       "class": "highway-label",
       "Datasource": {
-        "file": "/home/ubuntu/output/roads.shp"
+        "file": "/home/ubuntu/rivermap/output/roads.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -103,7 +103,7 @@
       "id": "water",
       "class": "",
       "Datasource": {
-        "file": "/home/ubuntu/output/water.shp"
+        "file": "/home/ubuntu/rivermap/output/water.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -121,7 +121,7 @@
       "id": "waterways",
       "class": "",
       "Datasource": {
-        "file": "/home/ubuntu/output/waterways-r.shp"
+        "file": "/home/ubuntu/rivermap/output/waterways-r.shp"
       },
       "srs-name": "autodetect",
       "srs": "",
@@ -139,7 +139,7 @@
       "id": "places",
       "class": "location",
       "Datasource": {
-        "file": "/home/ubuntu/output/places.shp",
+        "file": "/home/ubuntu/rivermap/output/places.shp",
         "id": "places",
         "project": "rivermap",
         "srs": ""
@@ -160,7 +160,7 @@
       "id": "boundaries",
       "class": "border",
       "Datasource": {
-        "file": "/home/ubuntu/output/boundaries.shp",
+        "file": "/home/ubuntu/rivermap/output/boundaries.shp",
         "id": "boundaries",
         "project": "rivermap",
         "srs": ""
@@ -181,7 +181,7 @@
       "id": "hill-shade",
       "class": "",
       "Datasource": {
-        "file": "/home/ubuntu/output/germany-hs.tif"
+        "file": "/home/ubuntu/rivermap/output/germany-hs.tif"
       },
       "srs-name": "WGS84",
       "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
@@ -199,7 +199,7 @@
       "id": "color-relief",
       "class": "",
       "Datasource": {
-        "file": "/home/ubuntu/output/germany-cr.tif"
+        "file": "/home/ubuntu/rivermap/output/germany-cr.tif"
       },
       "srs-name": "WGS84",
       "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
