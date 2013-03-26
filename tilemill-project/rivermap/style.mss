@@ -12,6 +12,7 @@
 @traveschlei:#381d99;
 @eider:#106932;
 @maas:#44e7a0;
+@rhone:#8a3679;
 @divide:#69b;
 				
 
@@ -71,6 +72,7 @@ Map {
   [rsystem='Schlei'] {line-color:@traveschlei; }
   [rsystem='Eider'] {line-color:@eider; }
   [rsystem='Maas'] {line-color:@maas; }
+  [rsystem='Rhone'] {line-color:@rhone; }
   [rsystem='divide'] {line-color:@divide; }
   [rsystem=''] {line-color:gray; }
 }

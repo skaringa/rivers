@@ -39,6 +39,8 @@ public class WellknownRivers {
 		id2Basin.put(25680743L, "Maas"); // Schwalm
 		
 		id2Basin.put(64690374L, "Donau"); // Drau
+		
+		id2Basin.put(123033116L, "Rhone");
 	}
 
 	// Waterways that are drainage divides
