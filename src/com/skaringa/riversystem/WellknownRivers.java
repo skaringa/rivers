@@ -46,6 +46,7 @@ public class WellknownRivers {
 	static {
 		divides = new HashSet<Long>();
 		divides.add(29915851L); // Main-Donau-Kanal
+		divides.add(102832333L); // Der Strom
 		divides.add(30417811L); // Nord-Ostsee-Kanal
 		divides.add(176010294L); // Schaalseekanal
 		divides.add(162105959L); // Störkanal
