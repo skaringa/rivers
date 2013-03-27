@@ -40,7 +40,12 @@ public class WellknownRivers {
 		
 		id2Basin.put(64690374L, "Donau"); // Drau
 		
+		id2Basin.put(34614840L, "Weichsel");
+		
 		id2Basin.put(123033116L, "Rhone");
+		id2Basin.put(77604974L, "Po"); // Ticino
+		id2Basin.put(68293532L, "Po"); // Maira
+		id2Basin.put(182920858L, "Etsch"); // Rambach - Ram 
 	}
 
 	// Waterways that are drainage divides
@@ -76,6 +81,8 @@ public class WellknownRivers {
 		divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
 		divides.add(81931306L); // unknown (Donau/Elbe)
 		divides.add(82080861L); // dibavod:id=207680006300
+		
+		divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
 	}
 	
 	public static String getBasin(Long riverId) {

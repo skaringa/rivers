@@ -8,11 +8,14 @@
 @donau:#823f0d;
 @elbe:#e7853c;
 @oder:#88b0f1;
+@weichsel:#1924B0;
 @warnowpeene:#23a252;
 @traveschlei:#381d99;
 @eider:#106932;
 @maas:#44e7a0;
 @rhone:#8a3679;
+@po:#c583b8;
+@etsch:#b0d68e;
 @divide:#69b;
 				
 
@@ -66,6 +69,7 @@ Map {
   [rsystem='Donau'] {line-color:@donau; }
   [rsystem='Elbe'] {line-color:@elbe; }
   [rsystem='Oder'] {line-color:@oder; }
+  [rsystem='Weichsel'] {line-color:@weichsel; }
   [rsystem='Warnow'] {line-color:@warnowpeene; }
   [rsystem='Peene'] {line-color:@warnowpeene; }
   [rsystem='Trave'] {line-color:@traveschlei; }
@@ -73,6 +77,8 @@ Map {
   [rsystem='Eider'] {line-color:@eider; }
   [rsystem='Maas'] {line-color:@maas; }
   [rsystem='Rhone'] {line-color:@rhone; }
+  [rsystem='Po'] {line-color:@po; }
+  [rsystem='Etsch'] {line-color:@etsch; }
   [rsystem='divide'] {line-color:@divide; }
   [rsystem=''] {line-color:gray; }
 }
