@@ -14,8 +14,7 @@
 @eider:#106932;
 @maas:#44e7a0;
 @rhone:#8a3679;
-@po:#c583b8;
-@etsch:#b0d68e;
+@adria:#c583b8;
 @divide:#69b;
 				
 
@@ -77,8 +76,11 @@ Map {
   [rsystem='Eider'] {line-color:@eider; }
   [rsystem='Maas'] {line-color:@maas; }
   [rsystem='Rhone'] {line-color:@rhone; }
-  [rsystem='Po'] {line-color:@po; }
-  [rsystem='Etsch'] {line-color:@etsch; }
+  [rsystem='Po'] {line-color:@adria; }
+  [rsystem='Etsch'] {line-color:@adria; }
+  [rsystem='Isonzo'] {line-color:@adria; }
+  [rsystem='Piave'] {line-color:@adria; }
+  [rsystem='Tagliamento'] {line-color:@adria; }
   [rsystem='divide'] {line-color:@divide; }
   [rsystem=''] {line-color:gray; }
 }
