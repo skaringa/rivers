@@ -88,6 +88,8 @@ public class WellknownRivers {
 		divides.add(81931306L); // unknown (Donau/Elbe)
 		divides.add(82080861L); // dibavod:id=207680006300
 		
+		divides.add(60687941L); // Czerna (Donau/Weichsel)
+		
 		divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
 		
 		divides.add(80965690L); // Canal du Rhône au Rhin
