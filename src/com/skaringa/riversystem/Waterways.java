@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -107,38 +106,74 @@ public class Waterways {
 	}
 
 	private void load(InputStream in) throws JSONException {
-		JSONTokener tokener = new JSONTokener(in);
-		JSONArray wwayArray = new JSONArray(tokener);
-		int wwayCount = wwayArray.length();
-		for (int i = 0; i < wwayCount; ++i) {
-			JSONObject wway = wwayArray.getJSONObject(i);
-			long id = wway.getLong("id");
-			if ("relation".equals(wway.optString("from"))) {
-				id /= 2; // restore original OSM id
-			} else if ("way".equals(wway.optString("from"))) {
-				id /= 2; // restore original OSM id
-			}
-			Long[] nodes = toNodeList(wway.getJSONObject("nodes"));
-			Way way = new Way(id, nodes);
-			String basin = WellknownRivers.getBasin(id);
-			if (basin != null) {
-				id2Basin.put(id, basin);
-				way.resolved = true;
-				queue.offer(way);
-			} 
-			if (WellknownRivers.isDivide(id)) {
-				way.resolved = true;
-			}
-			for (Long nodeId : nodes) {
-				List<Way> wayList = nodeId2WayList.get(nodeId);
-				if (wayList == null) {
-					wayList = new ArrayList<Way>();
-					nodeId2WayList.put(nodeId, wayList);
-				}
-				wayList.add(way);
-			}
+		int wwayCount = 0;
+		JSONTokener x = new JSONTokener(in);
+        if (x.nextClean() != '[') {
+            throw x.syntaxError("A JSONArray text must start with '['");
+        }
+        if (x.nextClean() != ']') {
+	        x.back();
+	        loop:
+	        for (;;) {
+	            if (x.nextClean() == ',') {
+	            	// NULL
+	                x.back();
+	            } else {
+	                x.back();
+	                Object object = x.nextValue();
+	                if (object instanceof JSONObject) {
+	                	loadWaterway((JSONObject)object);
+	                	wwayCount++;
+	                } else {
+	                	throw new JSONException(object +
+	                			" is not a JSONObject.");
+	                }
+	                
+	            }
+	            switch (x.nextClean()) {
+	            case ';':
+	            case ',':
+	                if (x.nextClean() == ']') {
+	                    break loop;
+	                }
+	                x.back();
+	                break;
+	            case ']':
+	            	break loop;
+	            default:
+	                throw x.syntaxError("Expected a ',' or ']'");
+	            }
+	        }
+        }
+        System.out.printf("Loaded %d ways.%n", wwayCount);
+	}
+	
+	private void loadWaterway(JSONObject wway) throws JSONException {
+		long id = wway.getLong("id");
+		if ("relation".equals(wway.optString("from"))) {
+			id /= 2; // restore original OSM id
+		} else if ("way".equals(wway.optString("from"))) {
+			id /= 2; // restore original OSM id
 		}
-		System.out.printf("Loaded %d ways.%n", wwayCount);
+		Long[] nodes = toNodeList(wway.getJSONObject("nodes"));
+		Way way = new Way(id, nodes);
+		String basin = WellknownRivers.getBasin(id);
+		if (basin != null) {
+			id2Basin.put(id, basin);
+			way.resolved = true;
+			queue.offer(way);
+		} 
+		if (WellknownRivers.isDivide(id)) {
+			way.resolved = true;
+		}
+		for (Long nodeId : nodes) {
+			List<Way> wayList = nodeId2WayList.get(nodeId);
+			if (wayList == null) {
+				wayList = new ArrayList<Way>();
+				nodeId2WayList.put(nodeId, wayList);
+			}
+			wayList.add(way);
+		}
 	}
 
 	private Long[] toNodeList(JSONObject nodes) throws JSONException {
