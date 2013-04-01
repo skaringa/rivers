@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -221,12 +220,12 @@ public class Waterways {
 	
 	static class Way {
 		Long id;
-		List<Long> nodeList;
+		Long[] nodeList;
 		boolean resolved;
 		
 		Way(Long id, Long[] nodes) {
 			this.id = id;
-			this.nodeList = Arrays.asList(nodes);
+			this.nodeList = nodes;
 		}
 	}
 
