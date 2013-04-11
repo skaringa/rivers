@@ -66,6 +66,7 @@ public class WellknownRivers {
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
+		divides.add(2360794L); // Mittellandkanal (relation)
 		divides.add(112674007L); // Fanggraben
 		divides.add(169698060L); // Elbe-Seitenkanal
 		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
