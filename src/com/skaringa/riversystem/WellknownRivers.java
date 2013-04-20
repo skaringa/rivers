@@ -78,6 +78,7 @@ public class WellknownRivers {
 		divides.add(35898720L); // Oder-Havel-Kanal
 		divides.add(28631513L); // Geeste Kanal - Schifffahrtsweg Elbe/Weser 
 		divides.add(25410328L); // Else-Hase-Bifurkation
+		divides.add(8134358L);
 		divides.add(49213928L); // Dortmund-Ems-Kanal
 		divides.add(48749385L); // Ems-Vechte-Kanal 
 		divides.add(28071866L); // Süd-Nord Kanal
