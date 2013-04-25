@@ -1,5 +1,6 @@
 package com.skaringa.riversystem;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class Waterways {
 		Waterways waterways = new Waterways();
 		
 		for (File jsonFile : jsonFileList) {
-			FileInputStream in = new FileInputStream(jsonFile);
+			InputStream in = new BufferedInputStream(new FileInputStream(jsonFile));
 			try {
 				waterways.load(in);
 			} finally {
@@ -45,7 +46,7 @@ public class Waterways {
 	public static Waterways loadFromJson(File jsonFile) throws JSONException, IOException {
 		Waterways waterways = new Waterways();
 		
-		FileInputStream in = new FileInputStream(jsonFile);
+		InputStream in = new BufferedInputStream(new FileInputStream(jsonFile));
 		try {
 			waterways.load(in);
 		} finally {
