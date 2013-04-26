@@ -31,7 +31,8 @@ public class RiverSystems {
 		File csvFile = new File(args[args.length - 1]);
 		File csvtFile = new File(args[args.length - 1] + "t");
 		
-		Waterways waterways = Waterways.loadFromJson(inputFileList);
+		Waterways waterways = new Waterways();
+		waterways.loadFromFileList(inputFileList);
 		waterways.explore();
 		
 		writeCsvt(csvtFile);

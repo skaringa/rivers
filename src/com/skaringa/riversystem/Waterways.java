@@ -1,10 +1,12 @@
 package com.skaringa.riversystem;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,34 +30,29 @@ public class Waterways {
 	private int waiters;
 	boolean running = true;
 	
-	public static Waterways loadFromJson(List<File> jsonFileList) throws JSONException, IOException {
-		Waterways waterways = new Waterways();
-		
-		for (File jsonFile : jsonFileList) {
-			InputStream in = new BufferedInputStream(new FileInputStream(jsonFile));
-			try {
-				waterways.load(in);
-			} finally {
-				in.close();
-			}
+	public void loadFromFileList(List<File> fileList) throws JSONException, IOException {
+		for (File file : fileList) {
+			loadFromFile(file);
 		}
-		
-		return waterways;
 	}
 	
-	public static Waterways loadFromJson(File jsonFile) throws JSONException, IOException {
-		Waterways waterways = new Waterways();
-		
-		InputStream in = new BufferedInputStream(new FileInputStream(jsonFile));
+	public void loadFromFile(File file) throws JSONException, IOException {
+	  System.out.println("Loading from " + file.getName());
+		InputStream in = new BufferedInputStream(new FileInputStream(file));
 		try {
-			waterways.load(in);
+		  if (file.getName().endsWith(".json")) {
+		    loadJson(in);
+		  } else if (file.getName().endsWith(".csv")) {
+		    loadCsv(in);
+		  } else {
+		    System.out.println("Unknown filetype - skip");
+		  }
 		} finally {
 			in.close();
 		}
-		return waterways;
 	}
 	
-	public Map<Long, String> getId2Basin() {
+  public Map<Long, String> getId2Basin() {
 		return id2Basin;
 	}
 	
@@ -105,7 +102,7 @@ public class Waterways {
 		return newWays;
 	}
 
-	private void load(InputStream in) throws JSONException {
+	private void loadJson(InputStream in) throws JSONException {
 		int wwayCount = 0;
 		JSONTokener x = new JSONTokener(in);
         if (x.nextClean() != '[') {
@@ -156,24 +153,7 @@ public class Waterways {
 			id /= 2; // restore original OSM id
 		}
 		Long[] nodes = toNodeList(wway.getJSONObject("nodes"));
-		Way way = new Way(id, nodes);
-		String basin = WellknownRivers.getBasin(id);
-		if (basin != null) {
-			id2Basin.put(id, basin);
-			way.resolved = true;
-			queue.offer(way);
-		} 
-		if (WellknownRivers.isDivide(id)) {
-			way.resolved = true;
-		}
-		for (Long nodeId : nodes) {
-			List<Way> wayList = nodeId2WayList.get(nodeId);
-			if (wayList == null) {
-				wayList = new ArrayList<Way>();
-				nodeId2WayList.put(nodeId, wayList);
-			}
-			wayList.add(way);
-		}
+		addWay(new Way(id, nodes));
 	}
 
 	private Long[] toNodeList(JSONObject nodes) throws JSONException {
@@ -184,6 +164,48 @@ public class Waterways {
 		}
 		return nodeArray;
 	}
+	
+  private void loadCsv(InputStream in) throws IOException {
+    int wwayCount = 0;
+    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+    try {
+      for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+        if (line.trim().length() > 0) { // skip blank lines
+          String tokens[] = line.split("\\,");
+          Long id = Long.valueOf(tokens[0]);
+          Long[] nodes = new Long[tokens.length - 1];
+          for (int i = 1; i < tokens.length; ++i) {
+            nodes[i-1] = Long.valueOf(tokens[i]);
+          }
+          addWay(new Way(id, nodes));
+          wwayCount++;
+        }
+      }
+    } finally {
+      reader.close();
+    }
+    System.out.printf("Loaded %d ways.%n", wwayCount);
+  }
+
+  private void addWay(Way way) {
+    String basin = WellknownRivers.getBasin(way.id);
+    if (basin != null) {
+      id2Basin.put(way.id, basin);
+      way.resolved = true;
+      queue.offer(way);
+    } 
+    if (WellknownRivers.isDivide(way.id)) {
+      way.resolved = true;
+    }
+    for (Long nodeId : way.nodeList) {
+      List<Way> wayList = nodeId2WayList.get(nodeId);
+      if (wayList == null) {
+        wayList = new ArrayList<Way>();
+        nodeId2WayList.put(nodeId, wayList);
+      }
+      wayList.add(way);
+    }
+  }
 
 	class Explorer extends Thread {
 
