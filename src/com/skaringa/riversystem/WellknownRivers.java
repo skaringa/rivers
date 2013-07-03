@@ -66,9 +66,14 @@ public class WellknownRivers {
 		divides.add(103423760L); // Elbe-Lübeck-Kanal
 		divides.add(24205659L);
 		divides.add(30378663L); // Mittellandkanal
+		divides.add(24950057L); // Mittellandkanal
+		divides.add(44671142L); // Mittellandkanal
+		divides.add(166221286L); // Mittellandkanal
 		divides.add(2360794L); // Mittellandkanal (relation)
+		divides.add(44671140L); // Mittellandkanal (area)
 		divides.add(112674007L); // Fanggraben
 		divides.add(169698060L); // Elbe-Seitenkanal
+		divides.add(30772058L); // Elbe-Seitenkanal (area)
 		divides.add(39743374L); // Ludwig-Donau-Main-Kanal
 		divides.add(5120607L); // Altmühlüberleiter
 		divides.add(43861716L); // Oder-Spree-Kanal
@@ -85,6 +90,7 @@ public class WellknownRivers {
 		divides.add(70681602L); // Küstenkanal
 		divides.add(160029569L); // Luttertunnel Bielefeld
 		divides.add(116711212L); // Haselbachstollen 
+		divides.add(210614669L); // Flößgraben 
 		
 		divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
 		divides.add(81931306L); // unknown (Donau/Elbe)

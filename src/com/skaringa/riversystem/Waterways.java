@@ -8,11 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONException;
@@ -29,6 +32,13 @@ public class Waterways {
 	private LinkedBlockingQueue<Way> queue = new LinkedBlockingQueue<Way>();
 	private int waiters;
 	boolean running = true;
+	
+	private boolean debug = false;
+	private Set<Long> debugWayIds = new HashSet<Long>(Arrays.asList(
+			new Long[]{171051783L, 41298988L, 171051778L, 25022196L, 171051784L, 171051776L, 
+					171051779L, 35956587L, 101237327L, 226998939L, 30772058L}
+			));
+	
 	
 	public void loadFromFileList(List<File> fileList) throws JSONException, IOException {
 		for (File file : fileList) {
@@ -95,6 +105,9 @@ public class Waterways {
 					continue;
 				}
 				id2Basin.put(way.id, basin);
+				if (debug && debugWayIds.contains(way.id)) {
+					System.err.printf("way %d tagged from node %d of way %d%n", way.id, refNodeId, refway.id);
+				}
 				way.resolved = true;
 				newWays.add(way);
 			}
