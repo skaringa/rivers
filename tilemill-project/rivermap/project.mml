@@ -150,6 +150,27 @@
       "name": "places"
     },
     {
+      "geometry": "point",
+      "extent": [
+        5.5802049,
+        42.392889,
+        23.8636111,
+        54.7632571
+      ],
+      "id": "peaks",
+      "class": "peak",
+      "Datasource": {
+        "file": "/home/ubuntu/rivermap/output/peaks.shp",
+        "id": "peaks",
+        "project": "rivermap",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "peaks"
+    },
+    {
       "geometry": "polygon",
       "extent": [
         5.8663153,

@@ -168,3 +168,36 @@ Map {
   [zoom=8] {line-width:2; line-dasharray:4,4,2,2; }
   [zoom>=9] {line-width:3; line-dasharray:6,6,3,3; }
 }
+
+/* --- Peaks --- */
+.peak[zoom>=8][importance='national'],
+.peak[zoom>=8][importance='international'] {
+  text-face-name:@font_reg;
+  text-name:"[name]";
+  text-wrap-width:15;
+  text-allow-overlap:true;
+  text-avoid-edges: true;
+  text-fill:#440022;
+  text-halo-fill:rgba(255,255,255,0.8);
+  text-halo-radius:1;
+  text-character-spacing:1;
+  text-dy:-5;
+  marker-type:ellipse;
+  marker-fill:#440022;
+  marker-width:2;
+  [zoom=8] {text-size:9;}
+  [zoom>=9] {text-size:10;}
+}
+
+.peak[zoom>=8][importance='national']::ele,
+.peak[zoom>=8][importance='international']::ele {
+  text-face-name:@font_cur;
+  text-name:"[ele]";
+  text-allow-overlap:true;
+  text-avoid-edges: true;
+  text-fill:#440022;
+  text-halo-fill:rgba(255,255,255,0.8);
+  text-halo-radius:1;
+  text-character-spacing:1;
+  text-dy:5;
+}
