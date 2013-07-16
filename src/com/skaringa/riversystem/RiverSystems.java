@@ -1,11 +1,14 @@
 package com.skaringa.riversystem;
 
+import gnu.trove.iterator.TLongIterator;
+import gnu.trove.iterator.TLongObjectIterator;
+import gnu.trove.map.TLongObjectMap;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONException;
 
@@ -23,6 +26,7 @@ public class RiverSystems {
 		}
 		
 		long ts = System.currentTimeMillis();
+		long tm = Runtime.getRuntime().totalMemory();
 		
 		List<File> inputFileList = new LinkedList<File>();
 		for (int i = 0; i < args.length - 1; ++i) {
@@ -38,7 +42,9 @@ public class RiverSystems {
 		writeCsvt(csvtFile);
 		writeCsv(csvFile, waterways.getId2Basin());
 
-		System.out.printf("Finished. Time: %d s%n", (System.currentTimeMillis() - ts) / 1000);
+		System.out.printf("Finished. Time: %d s Memory: %d MB%n", 
+		    (System.currentTimeMillis() - ts) / 1000,
+		    (Runtime.getRuntime().totalMemory() - tm) / 1024 / 1024);
 	}
 
 	private static void writeCsvt(File csvtFile) throws IOException {
@@ -50,16 +56,18 @@ public class RiverSystems {
 		}
 	}
 
-	private static void writeCsv(File csvFile, Map<Long, String> id2Basin) throws IOException, JSONException {
+	private static void writeCsv(File csvFile, TLongObjectMap<String> id2Basin) throws IOException, JSONException {
 		PrintWriter writer = new PrintWriter(csvFile);
 		try {
 			writer.println("id,rsystem");
-			for (Map.Entry<Long, String> entry : id2Basin.entrySet()) {
-				writer.printf("%d,%s%n", entry.getKey(), entry.getValue());
-			}
+      for (TLongObjectIterator<String> it = id2Basin.iterator(); it.hasNext();) {
+        it.advance();
+        writer.printf("%d,%s%n", it.key(), it.value());
+      }
 			// divides
-			for (Long id : WellknownRivers.divides) {
-				writer.printf("%d,divide%n", id);
+			TLongIterator iterator = WellknownRivers.divides.iterator();
+			while (iterator.hasNext()) {
+				writer.printf("%d,divide%n", iterator.next());
 			}
 		} finally {
 			writer.close();

@@ -1,5 +1,8 @@
 package com.skaringa.shapefile;
 
+import gnu.trove.map.TLongObjectMap;
+import gnu.trove.map.hash.TLongObjectHashMap;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -36,7 +39,7 @@ public class JoinCsv {
 	private SimpleFeatureBuilder featureBuilder;
 	private SimpleFeatureSource featureSource;
 	private SimpleFeatureType outputType;
-	private Map<Long, String> id2Basin;
+	private TLongObjectMap<String> id2Basin;
 
 	/**
 	 * @param args
@@ -68,8 +71,8 @@ public class JoinCsv {
 			while (iterator.hasNext()) {
 				SimpleFeature feature = iterator.next();
 				featureBuilder.add(feature.getAttribute("the_geom"));
-				Long id = Long.valueOf((String) feature.getAttribute("id"));
-				featureBuilder.add(id.toString());
+				long id = Long.parseLong((String) feature.getAttribute("id"));
+				featureBuilder.add(String.valueOf(id));
 				featureBuilder.add(feature.getAttribute("type"));
 				featureBuilder.add(feature.getAttribute("name"));
 				featureBuilder.add(id2Basin.get(id));
@@ -96,7 +99,7 @@ public class JoinCsv {
 	private void readInputCsv(String inputCsvfile) throws IOException {
 		File file = new File(inputCsvfile);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-		id2Basin = new HashMap<Long, String>();
+		id2Basin = new TLongObjectHashMap<String>();
         try {
         	/* First line of the data file is the header */
             String line = reader.readLine();
@@ -105,7 +108,7 @@ public class JoinCsv {
             for (line = reader.readLine(); line != null; line = reader.readLine()) {
                 if (line.trim().length() > 0) { // skip blank lines
                     String tokens[] = line.split("\\,");
-                    Long id = Long.valueOf(tokens[0]);
+                    long id = Long.parseLong(tokens[0]);
                     String basin = tokens[1].trim();
                     id2Basin.put(id, basin);
                 }

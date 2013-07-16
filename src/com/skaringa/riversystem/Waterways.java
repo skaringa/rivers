@@ -1,5 +1,11 @@
 package com.skaringa.riversystem;
 
+import gnu.trove.TCollections;
+import gnu.trove.map.TLongObjectMap;
+import gnu.trove.map.hash.TLongObjectHashMap;
+import gnu.trove.set.TLongSet;
+import gnu.trove.set.hash.TLongHashSet;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,14 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONException;
@@ -24,9 +24,9 @@ import org.json.JSONTokener;
 
 public class Waterways {
 
-	private Map<Long, String> id2Basin = Collections.synchronizedMap(new HashMap<Long, String>());
+	private TLongObjectMap<String> id2Basin = TCollections.synchronizedMap(new TLongObjectHashMap<String>());
 	
-	private Map<Long, List<Way>>  nodeId2WayList = new HashMap<Long, List<Way>>();
+	private TLongObjectMap<List<Way>>  nodeId2WayList = new TLongObjectHashMap<List<Way>>();
 	
 	private static final int N_THREADS = 8;
 	private LinkedBlockingQueue<Way> queue = new LinkedBlockingQueue<Way>();
@@ -34,10 +34,10 @@ public class Waterways {
 	boolean running = true;
 	
 	private boolean debug = false;
-	private Set<Long> debugWayIds = new HashSet<Long>(Arrays.asList(
-			new Long[]{171051783L, 41298988L, 171051778L, 25022196L, 171051784L, 171051776L, 
+	private TLongSet debugWayIds = new TLongHashSet(
+			new long[]{171051783L, 41298988L, 171051778L, 25022196L, 171051784L, 171051776L, 
 					171051779L, 35956587L, 101237327L, 226998939L, 30772058L}
-			));
+			);
 	
 	
 	public void loadFromFileList(List<File> fileList) throws JSONException, IOException {
@@ -62,7 +62,7 @@ public class Waterways {
 		}
 	}
 	
-  public Map<Long, String> getId2Basin() {
+  public TLongObjectMap<String> getId2Basin() {
 		return id2Basin;
 	}
 	
@@ -98,7 +98,7 @@ public class Waterways {
 	private List<Way> exploreNodes(Way refway) {
 		List<Way> newWays = new LinkedList<Way>();
 		String basin = id2Basin.get(refway.id);
-		for (Long refNodeId : refway.nodeList) {
+		for (long refNodeId : refway.nodeList) {
 			List<Way> wayList = nodeId2WayList.get(refNodeId);
 			for (Way way : wayList) {
 				if (way.resolved) {
@@ -165,13 +165,13 @@ public class Waterways {
 		} else if ("way".equals(wway.optString("from"))) {
 			id /= 2; // restore original OSM id
 		}
-		Long[] nodes = toNodeList(wway.getJSONObject("nodes"));
+		long[] nodes = toNodeList(wway.getJSONObject("nodes"));
 		addWay(new Way(id, nodes));
 	}
 
-	private Long[] toNodeList(JSONObject nodes) throws JSONException {
+	private long[] toNodeList(JSONObject nodes) throws JSONException {
 		int nodeCount = nodes.getInt("length");
-		Long[] nodeArray = new Long[nodeCount];
+		long[] nodeArray = new long[nodeCount];
 		for (int i = 0; i < nodeCount; ++i) {
 			nodeArray[i] = nodes.getLong(String.valueOf(i));
 		}
@@ -185,10 +185,10 @@ public class Waterways {
       for (String line = reader.readLine(); line != null; line = reader.readLine()) {
         if (line.trim().length() > 0) { // skip blank lines
           String tokens[] = line.split("\\,");
-          Long id = Long.valueOf(tokens[0]);
-          Long[] nodes = new Long[tokens.length - 1];
+          long id = Long.parseLong(tokens[0]);
+          long[] nodes = new long[tokens.length - 1];
           for (int i = 1; i < tokens.length; ++i) {
-            nodes[i-1] = Long.valueOf(tokens[i]);
+            nodes[i-1] = Long.parseLong(tokens[i]);
           }
           addWay(new Way(id, nodes));
           wwayCount++;
@@ -210,7 +210,7 @@ public class Waterways {
     if (WellknownRivers.isDivide(way.id)) {
       way.resolved = true;
     }
-    for (Long nodeId : way.nodeList) {
+    for (long nodeId : way.nodeList) {
       List<Way> wayList = nodeId2WayList.get(nodeId);
       if (wayList == null) {
         wayList = new ArrayList<Way>();
@@ -255,11 +255,11 @@ public class Waterways {
 	}
 	
 	static class Way {
-		Long id;
-		Long[] nodeList;
+		long id;
+		long[] nodeList;
 		boolean resolved;
 		
-		Way(Long id, Long[] nodes) {
+		Way(long id, long[] nodes) {
 			this.id = id;
 			this.nodeList = nodes;
 		}

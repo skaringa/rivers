@@ -1,16 +1,16 @@
 package com.skaringa.riversystem;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import gnu.trove.map.TLongObjectMap;
+import gnu.trove.map.hash.TLongObjectHashMap;
+import gnu.trove.set.TLongSet;
+import gnu.trove.set.hash.TLongHashSet;
 
 public class WellknownRivers {
 	
 	// Map IDs of wellknown rivers to their basin name
-	static Map<Long, String> id2Basin;
+	static TLongObjectMap<String> id2Basin;
 	static {
-		id2Basin = new HashMap<Long, String>();
+		id2Basin = new TLongObjectHashMap<String>();
 		id2Basin.put(102135980L, "Rhein");
 		id2Basin.put(157538529L, "Rhein"); // Bodensee
 		id2Basin.put(26970429L, "Rhein"); // Berkel
@@ -55,9 +55,9 @@ public class WellknownRivers {
 	}
 
 	// Waterways that are drainage divides
-	static Set<Long> divides;
+	static TLongSet divides;
 	static {
-		divides = new HashSet<Long>();
+		divides = new TLongHashSet();
 		divides.add(29915851L); // Main-Donau-Kanal
 		divides.add(102832333L); // Der Strom
 		divides.add(30417811L); // Nord-Ostsee-Kanal
@@ -104,11 +104,11 @@ public class WellknownRivers {
 		divides.add(80965690L); // Canal du Rhône au Rhin
 	}
 	
-	public static String getBasin(Long riverId) {
+	public static String getBasin(long riverId) {
 		return id2Basin.get(riverId);
 	}
 	
-	public static boolean isDivide(Long riverId) {
+	public static boolean isDivide(long riverId) {
 		return divides.contains(riverId);
 	}
 }
