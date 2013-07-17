@@ -23,7 +23,7 @@
 @residential:#dddcdc;
 
 @font_reg: "Ubuntu Regular","Arial Regular","DejaVu Sans Book";
-@font_cur: "Arial Italic","DejaVu Sans Italic";
+@font_cur: "Arial Italic","DejaVu Sans Condensed Oblique";
 
 Map {
   background-color:@water;
