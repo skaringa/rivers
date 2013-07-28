@@ -22,8 +22,8 @@
 @land:#fff;
 @residential:#dddcdc;
 
-@font_reg: "Ubuntu Regular","Arial Regular","DejaVu Sans Book";
-@font_cur: "Arial Italic","DejaVu Sans Condensed Oblique";
+@font_reg: "DejaVu Sans Book","Arial Regular";
+@font_cur: "DejaVu Sans Condensed Oblique","Arial Italic";
 
 Map {
   background-color:@water;
@@ -74,7 +74,7 @@ Map {
   [rsystem='Trave'] {line-color:@traveschlei; }
   [rsystem='Schlei'] {line-color:@traveschlei; }
   [rsystem='Eider'] {line-color:@eider; }
-  [rsystem='Maas'] {line-color:@maas; }
+  [rsystem='Maas'] {line-color:@rhein; }
   [rsystem='Rhone'] {line-color:@rhone; }
   [rsystem='Po'] {line-color:@adria; }
   [rsystem='Etsch'] {line-color:@adria; }
@@ -90,7 +90,9 @@ Map {
 }
 
 #waterways[zoom<11] {
-  line-width:1;
+  [zoom<7] {line-width:0.5;}
+  [zoom=7] {line-width:0.8;}
+  [zoom>=8] {line-width:1;}
 }
 #waterways[zoom>=11] {
   line-width:2;
@@ -102,27 +104,17 @@ Map {
   text-halo-fill:rgba(255,255,255,0.8);
   text-halo-radius:2;
 }
-#waterways[type='river'][zoom<11] {
-  line-width:2;
+#waterways[type='river'] {
+  [zoom<10] {line-width:2; text-size:10;}
+  [zoom=10] {line-width:4; text-size:12;}
+  [zoom>=11] {line-width:6; text-size:14;}
   text-face-name:@font_reg;
   text-name:"[name]";
-  text-size:10;
   text-placement:line;
   text-fill:spin(darken(@water,36),-10);
   text-halo-fill:rgba(255,255,255,0.8);
   text-halo-radius:2;
 }
-#waterways[type='river'][zoom>=11] {
-  line-width:6;
-  text-face-name:@font_reg;
-  text-name:"[name]";
-  text-size:14;
-  text-placement:line;
-  text-fill:spin(darken(@water,36),-10);
-  text-halo-fill:rgba(255,255,255,0.8);
-  text-halo-radius:2;
-}
-
 
 /* ---- LOCATION ---- */
 .location [type='city'][zoom>6] {
@@ -131,8 +123,10 @@ Map {
   text-fill:#222;
   text-halo-fill:rgba(255,255,255,0.2);
   text-halo-radius:2;
-  text-allow-overlap:true;
+  text-allow-overlap:false;
   text-dy:-8;
+  text-placement-type:simple;
+  text-placements:"S,SW,SE,N,NE,NW,E,W,10,8";
   marker-type:ellipse;
   marker-fill:red;
   marker-opacity:0.8;
@@ -149,14 +143,17 @@ Map {
   text-fill:#444;
   text-halo-fill:rgba(255,255,255,0.2);
   text-halo-radius:2;
-  text-allow-overlap:true;
-  text-size:14;
+  text-allow-overlap:false;
   text-dy:-8;
+  text-placement-type:simple;
+  text-placements:"S,SW,SE,N,NE,NW,E,W";
   marker-type:ellipse;
   marker-fill:gray;
   marker-opacity:0.8;
   marker-line-color:black;
   marker-allow-overlap:false;
+  [zoom=10] {text-size:10;}
+  [zoom>=11] {text-size:12;}
 }
 
 /* --- BORDER --- */
