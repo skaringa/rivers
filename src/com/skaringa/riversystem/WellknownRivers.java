@@ -39,8 +39,10 @@ public class WellknownRivers {
 		id2Basin.put(25680743L, "Maas"); // Schwalm
 		
 		id2Basin.put(64690374L, "Donau"); // Drau
+		id2Basin.put(23074512L, "Donau"); // Sava
 		
 		id2Basin.put(34614840L, "Weichsel");
+		id2Basin.put(179582873L, "Weichsel");
 		
 		id2Basin.put(77604974L, "Po"); // Ticino
 		id2Basin.put(68293532L, "Po"); // Maira
