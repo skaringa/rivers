@@ -46,6 +46,7 @@ public class WellknownRivers {
 		
 		id2Basin.put(77604974L, "Po"); // Ticino
 		id2Basin.put(68293532L, "Po"); // Maira
+		id2Basin.put(105715697, "Po"); // Oglio
 		id2Basin.put(182920858L, "Etsch"); // Rambach - Ram 
 		id2Basin.put(52106448L, "Isonzo");
 		id2Basin.put(159833469L, "Piave");
@@ -104,6 +105,8 @@ public class WellknownRivers {
 		divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
 		
 		divides.add(80965690L); // Canal du Rhône au Rhin
+		divides.add(73811224L);
+		divides.add(159656530L); // Canal des Vosges
 	}
 	
 	public static String getBasin(long riverId) {
