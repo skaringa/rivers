@@ -1,0 +1,9 @@
+<ivysettings>
+    <settings defaultResolver="chain"/>
+    <resolvers>
+        <chain name="chain">
+            <ibiblio name="osgeo" m2compatible="true" root="http://download.osgeo.org/webdav/geotools/"/>
+            <ibiblio name="central" m2compatible="true"/>
+         </chain>
+    </resolvers>
+</ivysettings>
