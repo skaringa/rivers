@@ -1,10 +1,63 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="rivers" default="resolve" basedir=".">
-    
-    <property name="src.dir" value="${basedir}/src"/>
-    <property name="lib.dir" value="${basedir}/lib"/>
-    <property name="build.dir" value="${basedir}/build"/>
-    
-    <target name="resolve" description="retrieve dependencies with ivy">
-        <ivy:retrieve />
-    </target>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         name="rivers"
+         default="compile"
+         basedir=".">
+
+  <property name="src.dir" value="${basedir}/src" />
+  <property name="lib.dir" value="${basedir}/lib" />
+  <property name="build.dir" value="${basedir}/bin" />
+  <property environment="env" />
+  <property name="run.dir" value="${env.WORK}/output" />
+
+  <path id="compile.classpath">
+    <fileset dir="${lib.dir}" includes="*.jar" />
+  </path>
+
+  <path id="run.classpath">
+    <pathelement path="${build.dir}" />
+    <path refid="compile.classpath" />
+  </path>
+
+  <target name="init">
+    <mkdir dir="${build.dir}" />
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+
+  <target name="compile" depends="init, resolve" description="compile">
+    <javac srcdir="${src.dir}"
+           destdir="${build.dir}"
+           includeantruntime="false"
+           classpathref="compile.classpath"
+           nowarn="true"
+           encoding="UTF-8" />
+  </target>
+
+  <target name="resolve" description="retrieve dependencies with ivy">
+    <ivy:retrieve />
+  </target>
+
+  <target name="RunRiverSystems" description="run program RiverSystems">
+    <echo>RunRiverSystems ${args}</echo>
+    <java classname="com.skaringa.riversystem.RiverSystems"
+          fork="yes"
+          classpathref="run.classpath"
+          dir="${run.dir}">
+      <jvmarg value="-Xmx5G" />
+      <arg line="${args}" />
+    </java>
+  </target>
+
+  <target name="RunJoinCsv" description="run program RiverSystems">
+    <echo>RunJoinCsv ${args}</echo>
+    <java classname="com.skaringa.shapefile.JoinCsv"
+          fork="yes"
+          classpathref="run.classpath"
+          dir="${run.dir}">
+      <jvmarg value="-Xmx5G" />
+      <arg line="${args}" />
+    </java>
+  </target>
 </project>
