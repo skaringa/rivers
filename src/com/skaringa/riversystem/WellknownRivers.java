@@ -105,6 +105,9 @@ public class WellknownRivers {
     divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
 
     divides.add(80965690L); // Canal du Rhône au Rhin
+    divides.add(80965316L);
+    divides.add(245257513L);
+    divides.add(171083336L); // Canal d'alimentation de la Largue
     divides.add(73811224L);
     divides.add(159656530L); // Canal des Vosges
   }
