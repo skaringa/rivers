@@ -12,7 +12,7 @@
 @warnowpeene:#23a252;
 @traveschlei:#381d99;
 @eider:#106932;
-@maas:#44e7a0;
+@maas:#1ca7f3;
 @rhone:#8a3679;
 @adria:#c583b8;
 @divide:#69b;
@@ -74,7 +74,7 @@ Map {
   [rsystem='Trave'] {line-color:@traveschlei; }
   [rsystem='Schlei'] {line-color:@traveschlei; }
   [rsystem='Eider'] {line-color:@eider; }
-  [rsystem='Maas'] {line-color:@rhein; }
+  [rsystem='Maas'] {line-color:@maas; }
   [rsystem='Rhone'] {line-color:@rhone; }
   [rsystem='Po'] {line-color:@adria; }
   [rsystem='Etsch'] {line-color:@adria; }

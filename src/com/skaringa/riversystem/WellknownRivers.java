@@ -101,6 +101,7 @@ public class WellknownRivers {
     divides.add(81931306L); // unknown (Donau/Elbe)
     divides.add(82080861L); // dibavod:id=207680006300
     divides.add(81453698L); // dibavod:id=131260002300
+    divides.add(272086643L); // umělý kanál (Donau/Elbe)
     divides.add(27568398L); // Schwarzenbergischer Schwemmkanal
     divides.add(262751461L); // Schwarzenbergischer Schwemmkanal
 
@@ -114,6 +115,14 @@ public class WellknownRivers {
     divides.add(171083336L); // Canal d'alimentation de la Largue
     divides.add(73811224L);
     divides.add(159656530L); // Canal des Vosges
+    divides.add(82715306L); // Souterrainl de Foug (Canal de la Marne au Rhin)
+
+    divides.add(208688655L); // Maas-Waal Kanaal
+    divides.add(79301837L);
+    divides.add(165188439L); // Heusdensch Kanaal
+    divides.add(86033810L);
+    divides.add(208687596L); // Kanaal van St. Andries
+    divides.add(79718960L);
   }
 
   public static String getBasin(long riverId) {
