@@ -37,6 +37,8 @@ public class WellknownRivers {
     id2Basin.put(36054759L, "Maas"); // Rur
     id2Basin.put(9332131L, "Maas"); // Niers
     id2Basin.put(25680743L, "Maas"); // Schwalm
+    id2Basin.put(28889257L, "Maas"); // La Meuse
+    id2Basin.put(48872639L, "Maas"); // La Chiers
 
     id2Basin.put(64690374L, "Donau"); // Drau
     id2Basin.put(23074512L, "Donau"); // Sava
