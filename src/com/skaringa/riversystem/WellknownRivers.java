@@ -7,56 +7,76 @@ import gnu.trove.set.hash.TLongHashSet;
 
 public class WellknownRivers {
 
+  private static final String RHONE = "Rhone";
+  private static final String TAGLIAMENTO = "Tagliamento";
+  private static final String PIAVE = "Piave";
+  private static final String ISONZO = "Isonzo";
+  private static final String ETSCH = "Etsch";
+  private static final String PO = "Po";
+  private static final String WEICHSEL = "Weichsel";
+  private static final String MAAS = "Maas";
+  private static final String EIDER = "Eider";
+  private static final String SCHLEI = "Schlei";
+  private static final String TRAVE = "Trave";
+  private static final String PEENE = "Peene";
+  private static final String WARNOW = "Warnow";
+  private static final String ODER = "Oder";
+  private static final String ELBE = "Elbe";
+  private static final String DONAU = "Donau";
+  private static final String EMS = "Ems";
+  private static final String WESER = "Weser";
+  private static final String RHEIN = "Rhein";
+
   // Map IDs of wellknown rivers to their basin name
   static TLongObjectMap<String> id2Basin;
   static {
     id2Basin = new TLongObjectHashMap<String>();
-    id2Basin.put(102135980L, "Rhein");
-    id2Basin.put(157538529L, "Rhein"); // Bodensee
-    id2Basin.put(26970429L, "Rhein"); // Berkel
-    id2Basin.put(32965156L, "Rhein"); // Issel
-    id2Basin.put(52528188L, "Rhein"); // Dinkel
-    id2Basin.put(23452335L, "Rhein"); // Vechte
-    id2Basin.put(33655748L, "Rhein"); // Bocholter Aa
-    id2Basin.put(128043705L, "Weser");
-    id2Basin.put(4308645L, "Ems");
-    id2Basin.put(5011091L, "Donau");
-    id2Basin.put(30613639L, "Elbe");
-    id2Basin.put(118848751L, "Elbe"); // Eger
-    id2Basin.put(89253786L, "Oder");
-    id2Basin.put(156293030L, "Warnow");
-    id2Basin.put(161734566L, "Warnow"); // Recknitz
-    id2Basin.put(4532243L, "Peene");
-    id2Basin.put(5005413L, "Trave");
-    id2Basin.put(29249972L, "Trave"); // Schwentine
-    id2Basin.put(104383228L, "Trave"); // Stepenitz
-    id2Basin.put(4267187L, "Schlei");
-    id2Basin.put(98726563L, "Eider"); // Arlau
-    id2Basin.put(52997220L, "Eider"); // Miele
-    id2Basin.put(5011995L, "Eider");
-    id2Basin.put(36054759L, "Maas"); // Rur
-    id2Basin.put(9332131L, "Maas"); // Niers
-    id2Basin.put(25680743L, "Maas"); // Schwalm
-    id2Basin.put(28889257L, "Maas"); // La Meuse
-    id2Basin.put(48872639L, "Maas"); // La Chiers
+    id2Basin.put(102135980L, RHEIN);
+    id2Basin.put(157538529L, RHEIN); // Bodensee
+    id2Basin.put(26970429L, RHEIN); // Berkel
+    id2Basin.put(32965156L, RHEIN); // Issel
+    id2Basin.put(52528188L, RHEIN); // Dinkel
+    id2Basin.put(23452335L, RHEIN); // Vechte
+    id2Basin.put(33655748L, RHEIN); // Bocholter Aa
+    id2Basin.put(128043705L, WESER);
+    id2Basin.put(4308645L, EMS);
+    id2Basin.put(5011091L, DONAU);
+    id2Basin.put(30613639L, ELBE);
+    id2Basin.put(118848751L, ELBE); // Eger
+    id2Basin.put(89253786L, ODER);
+    id2Basin.put(156293030L, WARNOW);
+    id2Basin.put(161734566L, WARNOW); // Recknitz
+    id2Basin.put(4532243L, PEENE);
+    id2Basin.put(5005413L, TRAVE);
+    id2Basin.put(29249972L, TRAVE); // Schwentine
+    id2Basin.put(104383228L, TRAVE); // Stepenitz
+    id2Basin.put(4267187L, SCHLEI);
+    id2Basin.put(98726563L, EIDER); // Arlau
+    id2Basin.put(52997220L, EIDER); // Miele
+    id2Basin.put(5011995L, EIDER);
+    id2Basin.put(36054759L, MAAS); // Rur
+    id2Basin.put(9332131L, MAAS); // Niers
+    id2Basin.put(25680743L, MAAS); // Schwalm
+    id2Basin.put(28889257L, MAAS); // La Meuse
+    id2Basin.put(48872639L, MAAS); // La Chiers
 
-    id2Basin.put(64690374L, "Donau"); // Drau
-    id2Basin.put(23074512L, "Donau"); // Sava
+    id2Basin.put(64690374L, DONAU); // Drau
+    id2Basin.put(23074512L, DONAU); // Sava
 
-    id2Basin.put(34614840L, "Weichsel");
-    id2Basin.put(179582873L, "Weichsel");
+    id2Basin.put(34614840L, WEICHSEL);
+    id2Basin.put(179582873L, WEICHSEL);
 
-    id2Basin.put(77604974L, "Po"); // Ticino
-    id2Basin.put(68293532L, "Po"); // Maira
-    id2Basin.put(105715697, "Po"); // Oglio
-    id2Basin.put(182920858L, "Etsch"); // Rambach - Ram
-    id2Basin.put(52106448L, "Isonzo");
-    id2Basin.put(159833469L, "Piave");
-    id2Basin.put(162189624L, "Tagliamento");
+    id2Basin.put(77604974L, PO); // Ticino
+    id2Basin.put(68293532L, PO); // Maira
+    id2Basin.put(105715697, PO); // Oglio
+    id2Basin.put(182920858L, ETSCH); // Rambach - Ram
+    id2Basin.put(52106448L, ISONZO);
+    id2Basin.put(159833469L, PIAVE);
+    id2Basin.put(162189624L, TAGLIAMENTO);
 
-    id2Basin.put(123033116L, "Rhone");
-    id2Basin.put(122130057L, "Rhone"); // Le Doubs
-    id2Basin.put(121412596L, "Rhone"); // La Saône
+    id2Basin.put(123033116L, RHONE);
+    id2Basin.put(122130057L, RHONE); // Le Doubs
+    id2Basin.put(121412596L, RHONE); // La Saône
   }
 
   // Waterways that are drainage divides
