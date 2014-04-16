@@ -103,6 +103,7 @@ Map {
   text-fill:spin(darken(@water,36),-10);
   text-halo-fill:rgba(255,255,255,0.8);
   text-halo-radius:2;
+  text-max-char-angle-delta:45;
 }
 #waterways[type='river'] {
   [zoom<10] {line-width:2; text-size:10;}
@@ -114,6 +115,7 @@ Map {
   text-fill:spin(darken(@water,36),-10);
   text-halo-fill:rgba(255,255,255,0.8);
   text-halo-radius:2;
+  text-max-char-angle-delta:45;
 }
 
 /* ---- LOCATION ---- */
