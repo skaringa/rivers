@@ -123,7 +123,7 @@ Map {
   text-face-name:@font_reg;
   text-name:"[name]";
   text-fill:#222;
-  text-halo-fill:rgba(255,255,255,0.2);
+  text-halo-fill:rgba(255,255,255,0.6);
   text-halo-radius:2;
   text-allow-overlap:false;
   text-dy:-8;
@@ -143,7 +143,7 @@ Map {
   text-face-name:@font_reg;
   text-name:"[name]";
   text-fill:#444;
-  text-halo-fill:rgba(255,255,255,0.2);
+  text-halo-fill:rgba(255,255,255,0.6);
   text-halo-radius:2;
   text-allow-overlap:false;
   text-dy:-8;
