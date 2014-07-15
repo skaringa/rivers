@@ -94,8 +94,12 @@ public class WellknownRivers {
     divides.add(24950057L); // Mittellandkanal
     divides.add(44671142L); // Mittellandkanal
     divides.add(166221286L); // Mittellandkanal
+    divides.add(244017125L); // dto.
+    divides.add(183432284L);
     divides.add(2360794L); // Mittellandkanal (relation)
     divides.add(44671140L); // Mittellandkanal (area)
+    divides.add(30380278L); // dto.
+    divides.add(49010852L);
     divides.add(112674007L); // Fanggraben
     divides.add(169698060L); // Elbe-Seitenkanal
     divides.add(254500615L);
