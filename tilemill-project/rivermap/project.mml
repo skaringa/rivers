@@ -93,6 +93,27 @@
       "name": "highway-label"
     },
     {
+      "geometry": "linestring",
+      "extent": [
+        5.0000088,
+        44.5005438,
+        19.9999811,
+        55.9995611
+      ],
+      "id": "railway",
+      "class": "railway",
+      "Datasource": {
+        "file": "/home/ubuntu/rivermap/output/railways.shp",
+        "id": "railways",
+        "project": "rivermap",
+        "srs": ""
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "railway"
+    },
+    {
       "geometry": "polygon",
       "extent": [
         5.8631179,
