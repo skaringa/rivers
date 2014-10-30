@@ -44,7 +44,7 @@ public class WellknownRivers {
     id2Basin.put(30613639L, ELBE);
     id2Basin.put(118848751L, ELBE); // Eger
     id2Basin.put(89253786L, ODER);
-    id2Basin.put(156293030L, WARNOW);
+    id2Basin.put(4488193L, WARNOW);
     id2Basin.put(161734566L, WARNOW); // Recknitz
     id2Basin.put(4532243L, PEENE);
     id2Basin.put(5005413L, TRAVE);
@@ -124,6 +124,7 @@ public class WellknownRivers {
     divides.add(160029569L); // Luttertunnel Bielefeld
     divides.add(116711212L); // Haselbachstollen
     divides.add(210614669L); // Flößgraben
+    divides.add(302373912L); // Großer Graben
 
     divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
     divides.add(81931306L); // unknown (Donau/Elbe)
