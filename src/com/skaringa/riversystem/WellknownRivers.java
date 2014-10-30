@@ -54,6 +54,8 @@ public class WellknownRivers {
     id2Basin.put(98726563L, EIDER); // Arlau
     id2Basin.put(52997220L, EIDER); // Miele
     id2Basin.put(5011995L, EIDER);
+    id2Basin.put(29432442L, ELBE); // Obere Eider
+                                   // (http://de.wikipedia.org/wiki/Eider)
     id2Basin.put(36054759L, MAAS); // Rur
     id2Basin.put(9332131L, MAAS); // Niers
     id2Basin.put(25680743L, MAAS); // Schwalm
