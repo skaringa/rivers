@@ -87,7 +87,8 @@ public class WellknownRivers {
     divides = new TLongHashSet();
     divides.add(29915851L); // Main-Donau-Kanal
     divides.add(102832333L); // Der Strom
-    divides.add(28070936L); // Nord-Ostsee-Kanal
+//    divides.add(30417811L); // Nord-Ostsee-Kanal
+    divides.add(28070936L);
     divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
     divides.add(73034121L); // alte Schleuse Kiel-Holtenau Nordkammer
     divides.add(131279454L); // alte Schleuse Kiel-Holtenau Südkammer
