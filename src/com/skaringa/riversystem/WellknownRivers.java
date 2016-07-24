@@ -102,6 +102,7 @@ public class WellknownRivers {
     divides.add(176010294L); // Schaalseekanal
     divides.add(162105959L); // Störkanal
     divides.add(103423760L); // Elbe-Lübeck-Kanal
+    divides.add(30909396L); // Schweriner See, Wallensteingraben
     divides.add(24205659L);
     divides.add(30378663L); // Mittellandkanal
     divides.add(24950057L); // Mittellandkanal
