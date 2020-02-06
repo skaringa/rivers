@@ -3,7 +3,7 @@
     <resolvers>
         <chain name="chain">
             <ibiblio name="osgeo" m2compatible="true" root="http://download.osgeo.org/webdav/geotools/"/>
-            <ibiblio name="central" m2compatible="true"/>
+            <ibiblio name="central" m2compatible="true" root="http://insecure.repo1.maven.org/maven2/"/>
          </chain>
     </resolvers>
 </ivysettings>
