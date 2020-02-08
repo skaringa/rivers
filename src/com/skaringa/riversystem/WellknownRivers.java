@@ -85,7 +85,7 @@ public class WellknownRivers {
   static TLongSet divides;
   static {
     divides = new TLongHashSet();
-    divides.add(39743371L); // Main-Donau-Kanal
+    divides.add(29915851L); // Main-Donau-Kanal
     divides.add(102832333L); // Der Strom
     divides.add(28070936L); // Nord-Ostsee-Kanal
     divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
@@ -130,8 +130,6 @@ public class WellknownRivers {
     divides.add(25410328L); // Else-Hase-Bifurkation
     divides.add(8134358L);
     divides.add(49213928L); // Dortmund-Ems-Kanal
-    divides.add(36272347L); // Dortmund-Ems-Kanal
-    divides.add(8134358L); // Dortmund-Ems-Kanal
     divides.add(48749385L); // Ems-Vechte-Kanal
     divides.add(28071866L); // Süd-Nord Kanal
     divides.add(70681602L); // Küstenkanal
