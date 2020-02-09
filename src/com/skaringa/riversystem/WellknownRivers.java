@@ -86,6 +86,7 @@ public class WellknownRivers {
   static {
     divides = new TLongHashSet();
     divides.add(29915851L); // Main-Donau-Kanal
+    divides.add(35963164L); //dto.
     divides.add(102832333L); // Der Strom
     divides.add(28070936L); // Nord-Ostsee-Kanal
     divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
@@ -121,6 +122,7 @@ public class WellknownRivers {
     divides.add(265233238L);
     divides.add(39743374L); // Ludwig-Donau-Main-Kanal
     divides.add(5120607L); // Altmühlüberleiter
+    divides.add(5120782L); // dto.
     divides.add(43861716L); // Oder-Spree-Kanal
     divides.add(27036866L); // Oste-Hamme-Kanal
     divides.add(30568943L); // Burgsittenser Bach
@@ -128,10 +130,14 @@ public class WellknownRivers {
     divides.add(35898720L); // Oder-Havel-Kanal
     divides.add(28631513L); // Geeste Kanal - Schifffahrtsweg Elbe/Weser
     divides.add(25410328L); // Else-Hase-Bifurkation
-    divides.add(8134358L);
-    divides.add(49213928L); // Dortmund-Ems-Kanal
+    divides.add(8134358L); // Dortmund-Ems-Kanal
+    divides.add(49213928L); // dto
+    divides.add(36272348L); // dto
     divides.add(48749385L); // Ems-Vechte-Kanal
+    divides.add(248963297L); // dto.
     divides.add(28071866L); // Süd-Nord Kanal
+    divides.add(204413032L); // Haren-Rütenbrock-Kanal
+    divides.add(456165106L); // dto.
     divides.add(70681602L); // Küstenkanal
     divides.add(160029569L); // Luttertunnel Bielefeld
     divides.add(116711212L); // Haselbachstollen
