@@ -14,8 +14,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONException;
@@ -23,6 +25,12 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Waterways {
+  
+  static Set<String> TYPE_BLACKLIST = new HashSet<String>();
+  static {
+    TYPE_BLACKLIST.add("riverbank");
+    TYPE_BLACKLIST.add("basin");
+  }
 
   private TLongObjectMap<String> id2Basin = TCollections.synchronizedMap(new TLongObjectHashMap<String>());
 
@@ -184,12 +192,16 @@ public class Waterways {
         if (line.trim().length() > 0) { // skip blank lines
           String tokens[] = line.split("\\,");
           long id = Long.parseLong(tokens[0]);
-          long[] nodes = new long[tokens.length - 1];
-          for (int i = 1; i < tokens.length; ++i) {
-            nodes[i - 1] = Long.parseLong(tokens[i]);
+          String type = tokens[1];
+          if (! TYPE_BLACKLIST.contains(type)) {
+            long[] nodes = new long[tokens.length - 2];
+            for (int i = 2; i < tokens.length; ++i) {
+              nodes[i - 2] = Long.parseLong(tokens[i]);
+            }
+            
+            addWay(new Way(id, nodes));
+            wwayCount++;
           }
-          addWay(new Way(id, nodes));
-          wwayCount++;
         }
       }
     } finally {
