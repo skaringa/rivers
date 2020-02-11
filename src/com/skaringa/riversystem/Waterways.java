@@ -28,8 +28,6 @@ public class Waterways {
   
   static Set<String> TYPE_BLACKLIST = new HashSet<String>();
   static {
-    TYPE_BLACKLIST.add("riverbank");
-    TYPE_BLACKLIST.add("basin");
   }
 
   private TLongObjectMap<String> id2Basin = TCollections.synchronizedMap(new TLongObjectHashMap<String>());
