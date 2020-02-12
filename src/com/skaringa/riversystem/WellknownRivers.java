@@ -162,6 +162,8 @@ public class WellknownRivers {
     divides.add(171083336L); // Canal d'alimentation de la Largue
     divides.add(73811224L);
     divides.add(159656530L); // Canal des Vosges
+    divides.add(480052426L); // dto. sidestream
+    divides.add(275827959L); // dto.
     divides.add(82715306L); // Souterrainl de Foug (Canal de la Marne au Rhin)
 
     divides.add(208688655L); // Maas-Waal Kanaal
@@ -170,6 +172,8 @@ public class WellknownRivers {
     divides.add(86033810L);
     divides.add(208687596L); // Kanaal van St. Andries
     divides.add(79718960L);
+    
+    divides.add(380269472L); // Tunnel Ticino - Vorderrhein
   }
 
   public static String getBasin(long riverId) {
