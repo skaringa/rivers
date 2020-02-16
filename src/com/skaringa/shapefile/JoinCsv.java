@@ -1,8 +1,5 @@
 package com.skaringa.shapefile;
 
-import gnu.trove.map.TLongObjectMap;
-import gnu.trove.map.hash.TLongObjectHashMap;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,10 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.geotools.data.DataUtilities;
-import org.geotools.data.DefaultTransaction;
 import org.geotools.data.FileDataStore;
 import org.geotools.data.FileDataStoreFinder;
-import org.geotools.data.Transaction;
 import org.geotools.data.collection.ListFeatureCollection;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
@@ -33,6 +28,9 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
 import com.vividsolutions.jts.geom.MultiLineString;
+
+import gnu.trove.map.TLongObjectMap;
+import gnu.trove.map.hash.TLongObjectHashMap;
 
 public class JoinCsv {
 
@@ -148,17 +146,10 @@ public class JoinCsv {
         .createNewDataStore(params);
     newDataStore.createSchema(outputType);
 
-    /*
-     * You can comment out this line if you are using the createFeatureType
-     * method (at end of class file) rather than DataUtilities.createType
-     */
-    // newDataStore.forceSchemaCRS(DefaultGeographicCRS.WGS84);
 
     /*
      * Write the features to the shapefile
      */
-    Transaction transaction = new DefaultTransaction("create");
-
     String typeName = newDataStore.getTypeNames()[0];
     SimpleFeatureSource featureSource = newDataStore
         .getFeatureSource(typeName);
@@ -172,17 +163,11 @@ public class JoinCsv {
      */
     SimpleFeatureCollection collection = new ListFeatureCollection(
         outputType, features);
-    featureStore.setTransaction(transaction);
     try {
       featureStore.addFeatures(collection);
-      transaction.commit();
       System.out.println("Sucessfully wrote shapefile " + file.getAbsolutePath());
     } catch (Exception problem) {
       problem.printStackTrace();
-      transaction.rollback();
-
-    } finally {
-      transaction.close();
     }
   }
 }
