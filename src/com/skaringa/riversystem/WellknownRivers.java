@@ -151,6 +151,7 @@ public class WellknownRivers {
     divides.add(272086643L); // umělý kanál (Donau/Elbe)
     divides.add(27568398L); // Schwarzenbergischer Schwemmkanal
     divides.add(262751461L); // Schwarzenbergischer Schwemmkanal
+    divides.add(340821441L); // Überleitung Hájený potok-Jizera (Oder/Elbe)
 
     divides.add(60687941L); // Czerna (Donau/Weichsel)
 
