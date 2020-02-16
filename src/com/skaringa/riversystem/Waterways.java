@@ -41,8 +41,7 @@ public class Waterways {
 
   private boolean debug = false;
   private TLongSet debugWayIds = new TLongHashSet(
-      new long[] { 171051783L, 41298988L, 171051778L, 25022196L, 171051784L, 171051776L,
-          171051779L, 35956587L, 101237327L, 226998939L, 30772058L }
+      new long[] { 71224720L, 82725219L, 5509033L, 83841440L, 5367717L }
       );
 
   public void loadFromFileList(List<File> fileList) throws JSONException, IOException {
