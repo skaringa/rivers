@@ -139,6 +139,8 @@ public class WellknownRivers {
     divides.add(204413032L); // Haren-Rütenbrock-Kanal
     divides.add(456165106L); // dto.
     divides.add(70681602L); // Küstenkanal
+    divides.add(614235529L); // Drentsche Hoofdvaart
+    divides.add(712007994L); // dto.
     divides.add(160029569L); // Luttertunnel Bielefeld
     divides.add(116711212L); // Haselbachstollen
     divides.add(210614669L); // Flößgraben
