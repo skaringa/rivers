@@ -1,5 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant"
-         name="rivers"
+<project name="rivers"
          default="compile"
          basedir=".">
 
@@ -26,17 +25,13 @@
     <delete dir="${build.dir}" />
   </target>
 
-  <target name="compile" depends="init, resolve" description="compile">
+  <target name="compile" depends="init" description="compile">
     <javac srcdir="${src.dir}"
            destdir="${build.dir}"
            includeantruntime="false"
            classpathref="compile.classpath"
            nowarn="true"
            encoding="UTF-8" />
-  </target>
-
-  <target name="resolve" description="retrieve dependencies with ivy">
-    <ivy:retrieve />
   </target>
 
   <target name="RunRiverSystems" description="run program RiverSystems">
