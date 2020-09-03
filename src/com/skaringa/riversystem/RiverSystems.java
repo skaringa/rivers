@@ -1,16 +1,16 @@
 package com.skaringa.riversystem;
 
-import gnu.trove.iterator.TLongIterator;
-import gnu.trove.iterator.TLongObjectIterator;
-import gnu.trove.map.TLongObjectMap;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
+
+import gnu.trove.iterator.TLongIterator;
+import gnu.trove.iterator.TLongObjectIterator;
+import gnu.trove.map.TLongObjectMap;
 
 public class RiverSystems {
 
@@ -21,7 +21,7 @@ public class RiverSystems {
    */
   public static void main(String[] args) throws JSONException, IOException {
     if (args.length < 2) {
-      System.out.printf("Usage: java %s <input_json_file_1> [<input_json_file_2> ...] <output_csv_file>%n",
+      System.out.printf("Usage: java %s <input_file_1> [<input_file_2> ] <output_csv_file>%n",
           RiverSystems.class.getName());
       System.exit(1);
     }
@@ -29,7 +29,7 @@ public class RiverSystems {
     long ts = System.currentTimeMillis();
     long tm = Runtime.getRuntime().totalMemory();
 
-    List<File> inputFileList = new LinkedList<File>();
+    List<File> inputFileList = new ArrayList<File>();
     for (int i = 0; i < args.length - 1; ++i) {
       inputFileList.add(new File(args[i]));
     }
@@ -37,12 +37,15 @@ public class RiverSystems {
     File csvtFile = new File(args[args.length - 1] + "t");
 
     Waterways waterways = new Waterways();
-    waterways.loadFromFile(inputFileList.get(0));
-    waterways.explore();
-    waterways.loadFromFile(inputFileList.get(0));
-    waterways.loadFromFile(inputFileList.get(1));
-    waterways.explore();
-
+    for (int pass = 1; pass < inputFileList.size()+1; ++pass) {
+      System.out.println("Pass " + pass);
+      for (int i = 0; i < pass; ++i) {
+        waterways.loadFromFile(inputFileList.get(i));
+      }
+      waterways.explore();
+    }
+    
+    System.out.println("Writing result...");
     writeCsvt(csvtFile);
     writeCsv(csvFile, waterways.getId2Basin());
 

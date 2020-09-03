@@ -209,14 +209,19 @@ public class Waterways {
   }
 
   private void addWay(Way way) {
-    String basin = WellknownRivers.getBasin(way.id);
-    if (basin == null) {
-      basin = id2Basin.get(way.id);
-    }
+    String basin = id2Basin.get(way.id);
     if (basin != null) {
-      id2Basin.put(way.id, basin);
+      // has basin from previous pass
       way.resolved = true;
       queue.offer(way);
+    } else {
+      basin = WellknownRivers.getBasin(way.id);
+      if (basin != null) {
+        // basin of a wellknown river
+        id2Basin.put(way.id, basin);
+        way.resolved = true;
+        queue.offer(way);
+      }
     }
     if (WellknownRivers.isDivide(way.id)) {
       way.resolved = true;
