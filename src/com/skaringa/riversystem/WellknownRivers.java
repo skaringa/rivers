@@ -89,6 +89,7 @@ public class WellknownRivers {
     divides.add(35963164L); //dto.
     divides.add(284797683L); // dto.
     divides.add(102832333L); // Der Strom
+    divides.add(88817869L); // Hausseebruchgraben
     divides.add(28070936L); // Nord-Ostsee-Kanal
     divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
     divides.add(73034121L); // alte Schleuse Kiel-Holtenau Nordkammer
@@ -179,6 +180,8 @@ public class WellknownRivers {
     divides.add(79718960L);
     
     divides.add(380269472L); // Tunnel Ticino - Vorderrhein
+    divides.add(781351380L); // Überleitungsstollen Bieltalbach
+    divides.add(420267291L); // Überleitungstunnel Rhein/Donau
   }
 
   public static String getBasin(long riverId) {
