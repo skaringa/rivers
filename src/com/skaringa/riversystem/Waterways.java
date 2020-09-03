@@ -37,7 +37,7 @@ public class Waterways {
   private static final int N_THREADS = 8;
   private LinkedBlockingQueue<Way> queue = new LinkedBlockingQueue<Way>();
   private int waiters;
-  boolean running = true;
+  boolean running;
 
   private boolean debug = false;
   private TLongSet debugWayIds = new TLongHashSet(
@@ -71,6 +71,7 @@ public class Waterways {
   }
 
   public void explore() {
+    running = true;
     LinkedList<Thread> threadList = new LinkedList<Thread>();
     for (int i = 0; i < N_THREADS; ++i) {
       Thread explorer = new Explorer();
@@ -209,6 +210,9 @@ public class Waterways {
 
   private void addWay(Way way) {
     String basin = WellknownRivers.getBasin(way.id);
+    if (basin == null) {
+      basin = id2Basin.get(way.id);
+    }
     if (basin != null) {
       id2Basin.put(way.id, basin);
       way.resolved = true;

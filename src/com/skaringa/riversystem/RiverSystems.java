@@ -37,7 +37,10 @@ public class RiverSystems {
     File csvtFile = new File(args[args.length - 1] + "t");
 
     Waterways waterways = new Waterways();
-    waterways.loadFromFileList(inputFileList);
+    waterways.loadFromFile(inputFileList.get(0));
+    waterways.explore();
+    waterways.loadFromFile(inputFileList.get(0));
+    waterways.loadFromFile(inputFileList.get(1));
     waterways.explore();
 
     writeCsvt(csvtFile);
