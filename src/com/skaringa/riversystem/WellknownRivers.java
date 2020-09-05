@@ -147,6 +147,8 @@ public class WellknownRivers {
     divides.add(116711212L); // Haselbachstollen
     divides.add(210614669L); // Flößgraben
     divides.add(302373912L); // Großer Graben
+    divides.add(23481759L); // Fossa Eugeniana
+    divides.add(26726898L); // Krollbachbifurkation https://www.hoevelhof.de/de/tourismus/sehenswuerdigkeiten/sehenswuerdigkeiten/krollbachbifurkation.php
 
     divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
     divides.add(81931306L); // unknown (Donau/Elbe)
@@ -160,6 +162,7 @@ public class WellknownRivers {
     divides.add(60687941L); // Czerna (Donau/Weichsel)
 
     divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
+    divides.add(751229797L); // Kanał Bachorze
 
     divides.add(80965690L); // Canal du Rhône au Rhin
     divides.add(80965316L);
