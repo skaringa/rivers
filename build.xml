@@ -40,7 +40,7 @@
           fork="yes"
           classpathref="run.classpath"
           dir="${run.dir}">
-      <jvmarg value="-Xmx10G" />
+      <jvmarg value="-Xmx20G" />
       <arg line="${args}" />
     </java>
   </target>
@@ -51,7 +51,7 @@
           fork="yes"
           classpathref="run.classpath"
           dir="${run.dir}">
-      <jvmarg value="-Xmx10G" />
+      <jvmarg value="-Xmx20G" />
       <arg line="${args}" />
     </java>
   </target>
