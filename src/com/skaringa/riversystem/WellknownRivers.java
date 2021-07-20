@@ -1,5 +1,9 @@
 package com.skaringa.riversystem;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import gnu.trove.map.TLongObjectMap;
 import gnu.trove.map.hash.TLongObjectHashMap;
 import gnu.trove.set.TLongSet;
@@ -7,25 +11,27 @@ import gnu.trove.set.hash.TLongHashSet;
 
 public class WellknownRivers {
 
-  private static final String RHONE = "Rhone";
-  private static final String TAGLIAMENTO = "Tagliamento";
-  private static final String PIAVE = "Piave";
-  private static final String ISONZO = "Isonzo";
-  private static final String ETSCH = "Etsch";
-  private static final String PO = "Po";
-  private static final String WEICHSEL = "Weichsel";
-  private static final String MAAS = "Maas";
-  private static final String EIDER = "Eider";
-  private static final String SCHLEI = "Schlei";
-  private static final String TRAVE = "Trave";
-  private static final String PEENE = "Peene";
-  private static final String WARNOW = "Warnow";
-  private static final String ODER = "Oder";
-  private static final String ELBE = "Elbe";
-  private static final String DONAU = "Donau";
-  private static final String EMS = "Ems";
-  private static final String WESER = "Weser";
-  private static final String RHEIN = "Rhein";
+  public static final String RHONE = "Rhone";
+  public static final String TAGLIAMENTO = "Tagliamento";
+  public static final String PIAVE = "Piave";
+  public static final String ISONZO = "Isonzo";
+  public static final String ETSCH = "Etsch";
+  public static final String PO = "Po";
+  public static final String WEICHSEL = "Weichsel";
+  public static final String MAAS = "Maas";
+  public static final String EIDER = "Eider";
+  public static final String SCHLEI = "Schlei";
+  public static final String TRAVE = "Trave";
+  public static final String PEENE = "Peene";
+  public static final String WARNOW = "Warnow";
+  public static final String ODER = "Oder";
+  public static final String ELBE = "Elbe";
+  public static final String DONAU = "Donau";
+  public static final String EMS = "Ems";
+  public static final String WESER = "Weser";
+  public static final String RHEIN = "Rhein";
+  
+  public static final Set<String> ADRIA = new HashSet<String>(Arrays.asList(TAGLIAMENTO, PIAVE, ISONZO, ETSCH, PO));
 
   // Map IDs of wellknown rivers to their basin name
   static TLongObjectMap<String> id2Basin;
@@ -158,11 +164,14 @@ public class WellknownRivers {
     divides.add(27568398L); // Schwarzenbergischer Schwemmkanal
     divides.add(262751461L); // Schwarzenbergischer Schwemmkanal
     divides.add(340821441L); // Überleitung Hájený potok-Jizera (Oder/Elbe)
+    divides.add(367797655L); // Osterbachkanal (Donau/Elbe)
 
     divides.add(60687941L); // Czerna (Donau/Weichsel)
 
     divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
     divides.add(751229797L); // Kanał Bachorze
+    divides.add(914971971L); // Oder/Weichsel
+    divides.add(931826321L); // Oder/Weichsel
 
     divides.add(80965690L); // Canal du Rhône au Rhin
     divides.add(80965316L);
@@ -185,6 +194,10 @@ public class WellknownRivers {
     divides.add(380269472L); // Tunnel Ticino - Vorderrhein
     divides.add(781351380L); // Überleitungsstollen Bieltalbach
     divides.add(420267291L); // Überleitungstunnel Rhein/Donau
+    
+    divides.add(900738718L); // Donauversinkung
+    divides.add(900736088L); // dto.
+    divides.add(900738333L); // dto.
   }
 
   public static String getBasin(long riverId) {
