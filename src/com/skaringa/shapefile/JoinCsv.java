@@ -94,7 +94,7 @@ public class JoinCsv {
         + DataUtilities.encodeType(schema));
   }
 
-  private void readInputCsv(String inputCsvfile) throws IOException {
+  void readInputCsv(String inputCsvfile) throws IOException {
     File file = new File(inputCsvfile);
     BufferedReader reader = new BufferedReader(new FileReader(file));
     id2Basin = new TLongObjectHashMap<String>();
@@ -114,6 +114,10 @@ public class JoinCsv {
     } finally {
       reader.close();
     }
+  }
+  
+  TLongObjectMap<String> getId2Basin() {
+    return id2Basin;
   }
 
   private void createFeatureBuilder() throws SchemaException {
