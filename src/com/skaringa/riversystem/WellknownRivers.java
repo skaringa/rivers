@@ -146,6 +146,7 @@ public class WellknownRivers {
     divides.add(28071866L); // Süd-Nord Kanal
     divides.add(204413032L); // Haren-Rütenbrock-Kanal
     divides.add(456165106L); // dto.
+    divides.add(715658668L); // dto.
     divides.add(70681602L); // Küstenkanal
     divides.add(614235529L); // Drentsche Hoofdvaart
     divides.add(712007994L); // dto.
@@ -167,6 +168,7 @@ public class WellknownRivers {
     divides.add(367797655L); // Osterbachkanal (Donau/Elbe)
 
     divides.add(60687941L); // Czerna (Donau/Weichsel)
+    divides.add(1041523012L); // Zásihlianka (Donau/Weichsel)
 
     divides.add(195089417L); // Kanał Bydgoski (Bromberger Kanal, Oder/Weichsel)
     divides.add(751229797L); // Kanał Bachorze
