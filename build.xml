@@ -45,14 +45,4 @@
     </java>
   </target>
 
-  <target name="RunJoinCsv" description="run program RiverSystems">
-    <echo>RunJoinCsv ${args}</echo>
-    <java classname="com.skaringa.shapefile.JoinCsv"
-          fork="yes"
-          classpathref="run.classpath"
-          dir="${run.dir}">
-      <jvmarg value="-Xmx20G" />
-      <arg line="${args}" />
-    </java>
-  </target>
 </project>

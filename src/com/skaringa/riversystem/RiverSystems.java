@@ -6,8 +6,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-
 import gnu.trove.iterator.TLongIterator;
 import gnu.trove.iterator.TLongObjectIterator;
 import gnu.trove.map.TLongObjectMap;
@@ -19,7 +17,7 @@ public class RiverSystems {
    * @throws IOException
    * @throws JSONException
    */
-  public static void main(String[] args) throws JSONException, IOException {
+  public static void main(String[] args) throws IOException {
     if (args.length < 2) {
       System.out.printf("Usage: java %s <input_file_1> [<input_file_2> ] <output_csv_file>%n",
           RiverSystems.class.getName());
@@ -63,7 +61,7 @@ public class RiverSystems {
     }
   }
 
-  private static void writeCsv(File csvFile, TLongObjectMap<String> id2Basin) throws IOException, JSONException {
+  private static void writeCsv(File csvFile, TLongObjectMap<String> id2Basin) throws IOException {
     PrintWriter writer = new PrintWriter(csvFile);
     try {
       writer.println("id,rsystem");

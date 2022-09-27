@@ -20,10 +20,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
 public class Waterways {
   
   static Set<String> TYPE_BLACKLIST = new HashSet<String>();
@@ -44,23 +40,17 @@ public class Waterways {
       new long[] { 71224720L, 82725219L, 5509033L, 83841440L, 5367717L }
       );
 
-  public void loadFromFileList(List<File> fileList) throws JSONException, IOException {
+  public void loadFromFileList(List<File> fileList) throws IOException {
     for (File file : fileList) {
       loadFromFile(file);
     }
   }
 
-  public void loadFromFile(File file) throws JSONException, IOException {
+  public void loadFromFile(File file) throws IOException {
     System.out.println("Loading from " + file.getName());
     InputStream in = new BufferedInputStream(new FileInputStream(file));
     try {
-      if (file.getName().endsWith(".json")) {
-        loadJson(in);
-      } else if (file.getName().endsWith(".csv")) {
-        loadCsv(in);
-      } else {
-        System.out.println("Unknown filetype - skip");
-      }
+      loadCsv(in);
     } finally {
       in.close();
     }
@@ -118,68 +108,6 @@ public class Waterways {
       }
     }
     return newWays;
-  }
-
-  private void loadJson(InputStream in) throws JSONException {
-    int wwayCount = 0;
-    JSONTokener x = new JSONTokener(in);
-    if (x.nextClean() != '[') {
-      throw x.syntaxError("A JSONArray text must start with '['");
-    }
-    if (x.nextClean() != ']') {
-      x.back();
-      loop: for (;;) {
-        if (x.nextClean() == ',') {
-          // NULL
-          x.back();
-        } else {
-          x.back();
-          Object object = x.nextValue();
-          if (object instanceof JSONObject) {
-            loadWaterway((JSONObject) object);
-            wwayCount++;
-          } else {
-            throw new JSONException(object +
-                " is not a JSONObject.");
-          }
-
-        }
-        switch (x.nextClean()) {
-        case ';':
-        case ',':
-          if (x.nextClean() == ']') {
-            break loop;
-          }
-          x.back();
-          break;
-        case ']':
-          break loop;
-        default:
-          throw x.syntaxError("Expected a ',' or ']'");
-        }
-      }
-    }
-    System.out.printf("Loaded %d ways.%n", wwayCount);
-  }
-
-  private void loadWaterway(JSONObject wway) throws JSONException {
-    long id = wway.getLong("id");
-    if ("relation".equals(wway.optString("from"))) {
-      id /= 2; // restore original OSM id
-    } else if ("way".equals(wway.optString("from"))) {
-      id /= 2; // restore original OSM id
-    }
-    long[] nodes = toNodeList(wway.getJSONObject("nodes"));
-    addWay(new Way(id, nodes));
-  }
-
-  private long[] toNodeList(JSONObject nodes) throws JSONException {
-    int nodeCount = nodes.getInt("length");
-    long[] nodeArray = new long[nodeCount];
-    for (int i = 0; i < nodeCount; ++i) {
-      nodeArray[i] = nodes.getLong(String.valueOf(i));
-    }
-    return nodeArray;
   }
 
   private void loadCsv(InputStream in) throws IOException {

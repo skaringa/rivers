@@ -185,6 +185,11 @@ public class WellknownRivers {
     divides.add(275827959L); // dto.
     divides.add(82715306L); // Souterrainl de Foug (Canal de la Marne au Rhin)
     divides.add(5509033L); // dto. relation !!!
+    
+    divides.add(435393183L); // Rhone/Po
+    divides.add(405871635L); // Rhone/Po
+    divides.add(398968003L); // Canale del Comio
+    divides.add(51920117L); // Canale Marignane Basse
 
     divides.add(208688655L); // Maas-Waal Kanaal
     divides.add(79301837L);
