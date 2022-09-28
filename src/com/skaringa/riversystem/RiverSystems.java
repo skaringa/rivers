@@ -40,8 +40,10 @@ public class RiverSystems {
       for (int i = 0; i < pass; ++i) {
         waterways.loadFromFile(inputFileList.get(i));
       }
-      waterways.explore();
+      waterways.explore(pass);
     }
+    
+    waterways.reportCollisions(System.out);
     
     System.out.println("Writing result...");
     writeCsvt(csvtFile);

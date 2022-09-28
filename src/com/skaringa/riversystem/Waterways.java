@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -34,6 +35,8 @@ public class Waterways {
   private LinkedBlockingQueue<Way> queue = new LinkedBlockingQueue<Way>();
   private int waiters;
   boolean running;
+  private int pass;
+  private List<Collision> collisionList = new LinkedList<Collision>();
 
   private boolean debug = false;
   private TLongSet debugWayIds = new TLongHashSet(
@@ -60,7 +63,8 @@ public class Waterways {
     return id2Basin;
   }
 
-  public void explore() {
+  public void explore(int pass) {
+    this.pass = pass;
     running = true;
     LinkedList<Thread> threadList = new LinkedList<Thread>();
     for (int i = 0; i < N_THREADS; ++i) {
@@ -89,6 +93,20 @@ public class Waterways {
       }
     }
   }
+  
+  public void reportCollisions(PrintStream out) {
+    for (Collision coll : collisionList) {
+      if (WellknownRivers.ADRIA.contains(coll.prevBasin) && WellknownRivers.ADRIA.contains(coll.newBasin)) {
+        // don't care
+      } else if (WellknownRivers.TRAVESCHLEI.contains(coll.prevBasin) && WellknownRivers.TRAVESCHLEI.contains(coll.newBasin)) {
+        // don't care
+      } else if (WellknownRivers.WARNOWPEENE.contains(coll.prevBasin) && WellknownRivers.WARNOWPEENE.contains(coll.newBasin)) {
+        // don't care
+      } else {
+        out.println(coll);
+      }
+    }
+  }
 
   private List<Way> exploreNodes(Way refway) {
     List<Way> newWays = new LinkedList<Way>();
@@ -97,6 +115,10 @@ public class Waterways {
       List<Way> wayList = nodeId2WayList.get(refNodeId);
       for (Way way : wayList) {
         if (way.resolved) {
+          final String prevBasin = id2Basin.get(way.id);
+          if (pass == 1 && prevBasin != null && ! basin.equals(prevBasin)) {
+            collisionList.add(new Collision(way.id, prevBasin, basin));
+          }
           continue;
         }
         id2Basin.put(way.id, basin);
@@ -207,6 +229,25 @@ public class Waterways {
       this.id = id;
       this.nodeList = nodes;
     }
+  }
+  
+  static class Collision {
+    long wayid;
+    String prevBasin;
+    String newBasin;
+    
+    public Collision(long wayid, String prevBasin, String newBasin) {
+      super();
+      this.wayid = wayid;
+      this.prevBasin = prevBasin;
+      this.newBasin = newBasin;
+    }
+
+    @Override
+    public String toString() {
+      return "Collision at way: " + wayid + ": " + newBasin + "<-" + prevBasin;
+    }
+    
   }
 
 }

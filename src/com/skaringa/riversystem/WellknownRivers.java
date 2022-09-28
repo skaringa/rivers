@@ -32,6 +32,8 @@ public class WellknownRivers {
   public static final String RHEIN = "Rhein";
   
   public static final Set<String> ADRIA = new HashSet<String>(Arrays.asList(TAGLIAMENTO, PIAVE, ISONZO, ETSCH, PO));
+  public static final Set<String> WARNOWPEENE = new HashSet<String>(Arrays.asList(WARNOW, PEENE));
+  public static final Set<String> TRAVESCHLEI = new HashSet<String>(Arrays.asList(TRAVE, SCHLEI));
 
   // Map IDs of wellknown rivers to their basin name
   static TLongObjectMap<String> id2Basin;
@@ -133,6 +135,9 @@ public class WellknownRivers {
     divides.add(5120782L); // dto.
     divides.add(43861716L); // Oder-Spree-Kanal
     divides.add(27036866L); // Oste-Hamme-Kanal
+    divides.add(142987714L);
+    divides.add(685450543L); // Templiner Kanal
+    divides.add(663624865L); // Godenstedt-Ostereistedter Moorgraben
     divides.add(30568943L); // Burgsittenser Bach
     divides.add(166599679L); // Finowkanal
     divides.add(35898720L); // Oder-Havel-Kanal
@@ -147,6 +152,9 @@ public class WellknownRivers {
     divides.add(204413032L); // Haren-Rütenbrock-Kanal
     divides.add(456165106L); // dto.
     divides.add(715658668L); // dto.
+    divides.add(611321392L); // Prinses Margrietkanaal
+    divides.add(668498070L); // dto.
+    divides.add(203463567L); // Stads-Compascuumkanaal
     divides.add(70681602L); // Küstenkanal
     divides.add(614235529L); // Drentsche Hoofdvaart
     divides.add(712007994L); // dto.
@@ -156,7 +164,8 @@ public class WellknownRivers {
     divides.add(302373912L); // Großer Graben
     divides.add(23481759L); // Fossa Eugeniana
     divides.add(26726898L); // Krollbachbifurkation https://www.hoevelhof.de/de/tourismus/sehenswuerdigkeiten/sehenswuerdigkeiten/krollbachbifurkation.php
-
+    
+    
     divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
     divides.add(81931306L); // unknown (Donau/Elbe)
     divides.add(82080861L); // dibavod:id=207680006300
@@ -165,6 +174,7 @@ public class WellknownRivers {
     divides.add(27568398L); // Schwarzenbergischer Schwemmkanal
     divides.add(262751461L); // Schwarzenbergischer Schwemmkanal
     divides.add(340821441L); // Überleitung Hájený potok-Jizera (Oder/Elbe)
+    divides.add(81866380L);; // Kanal Bílá Nisa/Kamenice
     divides.add(367797655L); // Osterbachkanal (Donau/Elbe)
 
     divides.add(60687941L); // Czerna (Donau/Weichsel)
@@ -197,6 +207,7 @@ public class WellknownRivers {
     divides.add(86033810L);
     divides.add(208687596L); // Kanaal van St. Andries
     divides.add(79718960L);
+    divides.add(80258525L); // Nordkanal
     
     divides.add(380269472L); // Tunnel Ticino - Vorderrhein
     divides.add(781351380L); // Überleitungsstollen Bieltalbach
