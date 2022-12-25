@@ -176,6 +176,7 @@ public class WellknownRivers {
     divides.add(340821441L); // Überleitung Hájený potok-Jizera (Oder/Elbe)
     divides.add(81866380L);; // Kanal Bílá Nisa/Kamenice
     divides.add(367797655L); // Osterbachkanal (Donau/Elbe)
+    divides.add(1110496745L); // Hochmoor Topielsko (Oder/Elbe)
 
     divides.add(60687941L); // Czerna (Donau/Weichsel)
     divides.add(1041523012L); // Zásihlianka (Donau/Weichsel)
