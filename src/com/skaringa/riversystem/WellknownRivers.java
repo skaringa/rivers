@@ -164,7 +164,7 @@ public class WellknownRivers {
     divides.add(302373912L); // Großer Graben
     divides.add(23481759L); // Fossa Eugeniana
     divides.add(26726898L); // Krollbachbifurkation https://www.hoevelhof.de/de/tourismus/sehenswuerdigkeiten/sehenswuerdigkeiten/krollbachbifurkation.php
-    
+    divides.add(753903784L); // Moerskanal
     
     divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
     divides.add(81931306L); // unknown (Donau/Elbe)
@@ -217,6 +217,9 @@ public class WellknownRivers {
     divides.add(900738718L); // Donauversinkung
     divides.add(900736088L); // dto.
     divides.add(900738333L); // dto.
+    
+    divides.add(741211480L); // Überleitung Kops-Vermunt
+    divides.add(1183699176L); // Bachüberleitung Fasulbach und Rosanna
   }
 
   public static String getBasin(long riverId) {
