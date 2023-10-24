@@ -58,7 +58,7 @@ public class WellknownRivers {
     id2Basin.put(5005413L, TRAVE);
     id2Basin.put(29249972L, TRAVE); // Schwentine
     id2Basin.put(104383228L, TRAVE); // Stepenitz
-    id2Basin.put(219919816L, SCHLEI);
+    id2Basin.put(23859221L, SCHLEI); // Füsinger Au
     id2Basin.put(98726563L, EIDER); // Arlau
     id2Basin.put(52997220L, EIDER); // Miele
     id2Basin.put(5011995L, EIDER);
