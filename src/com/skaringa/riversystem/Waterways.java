@@ -107,6 +107,23 @@ public class Waterways {
       }
     }
   }
+  
+  public void reportMissingWellnkownIds(PrintStream out) {
+    List<Long> missingWellknownIds = new ArrayList<Long>();
+    for (long id : WellknownRivers.id2Basin.keys()) {
+      if (! id2Basin.containsKey(id)) {
+        missingWellknownIds.add(id);
+      }
+    }
+    
+    if (! missingWellknownIds.isEmpty()) {
+      out.println("Ids of wellknown rivers that are no longer in OSM data:");
+      for (long id : missingWellknownIds) {
+        System.out.printf("%d (%s)%n", id, WellknownRivers.getBasin(id));
+      }
+    }
+    System.out.println();
+  }
 
   private List<Way> exploreNodes(Way refway) {
     List<Way> newWays = new LinkedList<Way>();

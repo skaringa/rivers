@@ -43,6 +43,7 @@ public class RiverSystems {
       waterways.explore(pass);
     }
     
+    waterways.reportMissingWellnkownIds(System.out);
     waterways.reportCollisions(System.out);
     
     System.out.println("Writing result...");

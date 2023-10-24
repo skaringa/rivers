@@ -40,7 +40,6 @@ public class WellknownRivers {
   static {
     id2Basin = new TLongObjectHashMap<String>();
     id2Basin.put(102135980L, RHEIN);
-    id2Basin.put(157538529L, RHEIN); // Bodensee
     id2Basin.put(26970429L, RHEIN); // Berkel
     id2Basin.put(32965156L, RHEIN); // Issel
     id2Basin.put(52528188L, RHEIN); // Dinkel
@@ -55,7 +54,7 @@ public class WellknownRivers {
     id2Basin.put(4488193L, WARNOW);
     id2Basin.put(161734566L, WARNOW); // Recknitz
     id2Basin.put(4532243L, PEENE);
-    id2Basin.put(5005413L, TRAVE);
+    id2Basin.put(1211198775L, TRAVE);
     id2Basin.put(29249972L, TRAVE); // Schwentine
     id2Basin.put(104383228L, TRAVE); // Stepenitz
     id2Basin.put(23859221L, SCHLEI); // Füsinger Au
@@ -76,17 +75,14 @@ public class WellknownRivers {
     id2Basin.put(34614840L, WEICHSEL);
     id2Basin.put(179582873L, WEICHSEL);
 
-    id2Basin.put(77604974L, PO); // Ticino
     id2Basin.put(68293532L, PO); // Maira
     id2Basin.put(105715697, PO); // Oglio
     id2Basin.put(182920858L, ETSCH); // Rambach - Ram
     id2Basin.put(52106448L, ISONZO);
-    id2Basin.put(159833469L, PIAVE);
     id2Basin.put(162189624L, TAGLIAMENTO);
 
     id2Basin.put(123033116L, RHONE);
     id2Basin.put(122130057L, RHONE); // Le Doubs
-    id2Basin.put(121412596L, RHONE); // La Saône
   }
 
   // Waterways that are drainage divides
