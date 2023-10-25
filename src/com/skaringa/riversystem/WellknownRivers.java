@@ -94,21 +94,17 @@ public class WellknownRivers {
     divides.add(284797683L); // dto.
     divides.add(102832333L); // Der Strom
     divides.add(88817869L); // Hausseebruchgraben
-    divides.add(28070936L); // Nord-Ostsee-Kanal
-    divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
-    divides.add(73034121L); // alte Schleuse Kiel-Holtenau Nordkammer
-    divides.add(131279454L); // alte Schleuse Kiel-Holtenau Südkammer
-    divides.add(73034123L); // alte Schleuse Kiel-Holtenau Südkammer
-    divides.add(131279451L); // neue Schleuse Kiel-Holtenau Nordkammer
+    divides.add(427799833L); // Nord-Ostsee-Kanal Kiel-Holtenau Wehr
+    divides.add(131279454L); // neue Schleuse Kiel-Holtenau Nordkammer
     divides.add(73033120L); // neue Schleuse Kiel-Holtenau Nordkammer
     divides.add(131279453L); // neue Schleuse Kiel-Holtenau Südkammer
     divides.add(73033118L); // neue Schleuse Kiel-Holtenau Südkammer
-    divides.add(179081443L); // alte Schleuse Eider Kanal Rendsburg
     divides.add(169231236L); // Schleuse Gieselau-Kanal
     divides.add(169231235L); // Schleuse Gieselau-Kanal
     divides.add(176010294L); // Schaalseekanal
     divides.add(162105959L); // Störkanal
-    divides.add(103423760L); // Elbe-Lübeck-Kanal
+    divides.add(103513817L); // Elbe-Lübeck-Kanal
+    divides.add(172109819L); // Elbe-Lübeck-Kanal
     divides.add(30909396L); // Schweriner See, Wallensteingraben
     divides.add(24205659L);
     divides.add(30378663L); // Mittellandkanal
