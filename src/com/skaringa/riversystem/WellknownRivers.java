@@ -55,11 +55,11 @@ public class WellknownRivers {
     id2Basin.put(161734566L, WARNOW); // Recknitz
     id2Basin.put(4532243L, PEENE);
     id2Basin.put(1211198775L, TRAVE);
-    id2Basin.put(29249972L, TRAVE); // Schwentine
-    id2Basin.put(104383228L, TRAVE); // Stepenitz
+//    id2Basin.put(29249972L, TRAVE); // Schwentine
+//    id2Basin.put(104383228L, TRAVE); // Stepenitz
     id2Basin.put(23859221L, SCHLEI); // Füsinger Au
-    id2Basin.put(98726563L, EIDER); // Arlau
-    id2Basin.put(52997220L, EIDER); // Miele
+//    id2Basin.put(98726563L, EIDER); // Arlau
+//    id2Basin.put(52997220L, EIDER); // Miele
     id2Basin.put(5011995L, EIDER);
     id2Basin.put(29432442L, ELBE); // Obere Eider
                                    // (http://de.wikipedia.org/wiki/Eider)
@@ -94,6 +94,10 @@ public class WellknownRivers {
     divides.add(284797683L); // dto.
     divides.add(102832333L); // Der Strom
     divides.add(88817869L); // Hausseebruchgraben
+    divides.add(28406303L); // Küste Trave rechts
+    divides.add(25976489L); // Küste Schlei links
+    divides.add(347556100L); // Küste Eider rechts
+    divides.add(4100668L); // Küste Elbe rechts
     divides.add(28070936L); // Nord-Ostsee-Kanal
     divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
     divides.add(73034121L); // alte Schleuse Kiel-Holtenau Nordkammer
