@@ -52,7 +52,7 @@ public class WellknownRivers {
     id2Basin.put(118848751L, ELBE); // Eger
     id2Basin.put(89253786L, ODER);
     id2Basin.put(4488193L, WARNOW);
-    id2Basin.put(161734566L, WARNOW); // Recknitz
+//    id2Basin.put(161734566L, WARNOW); // Recknitz
     id2Basin.put(4532243L, PEENE);
     id2Basin.put(1211198775L, TRAVE);
 //    id2Basin.put(29249972L, TRAVE); // Schwentine
@@ -92,12 +92,18 @@ public class WellknownRivers {
     divides.add(29915851L); // Main-Donau-Kanal
     divides.add(35963164L); //dto.
     divides.add(284797683L); // dto.
-    divides.add(102832333L); // Der Strom
     divides.add(88817869L); // Hausseebruchgraben
+    divides.add(733422822L); // Küste Oder rechts
+    divides.add(30421371L); // Küste Peene rechts
+    divides.add(102832365L); // Der Strom
+    divides.add(95799872L); // Küste Peene rechts
     divides.add(28406303L); // Küste Trave rechts
     divides.add(25976489L); // Küste Schlei links
     divides.add(347556100L); // Küste Eider rechts
     divides.add(4100668L); // Küste Elbe rechts
+    divides.add(4096524L); // Küste Weser rechts
+    divides.add(159679203L); // Küste Ems rechts
+    divides.add(921082861L); // Küste Rhein rechts
     divides.add(28070936L); // Nord-Ostsee-Kanal
     divides.add(131279449L); // alte Schleuse Kiel-Holtenau Nordkammer
     divides.add(73034121L); // alte Schleuse Kiel-Holtenau Nordkammer
