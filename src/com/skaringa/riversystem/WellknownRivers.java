@@ -52,14 +52,9 @@ public class WellknownRivers {
     id2Basin.put(118848751L, ELBE); // Eger
     id2Basin.put(89253786L, ODER);
     id2Basin.put(4488193L, WARNOW);
-//    id2Basin.put(161734566L, WARNOW); // Recknitz
     id2Basin.put(4532243L, PEENE);
     id2Basin.put(1211198775L, TRAVE);
-//    id2Basin.put(29249972L, TRAVE); // Schwentine
-//    id2Basin.put(104383228L, TRAVE); // Stepenitz
     id2Basin.put(23859221L, SCHLEI); // Füsinger Au
-//    id2Basin.put(98726563L, EIDER); // Arlau
-//    id2Basin.put(52997220L, EIDER); // Miele
     id2Basin.put(5011995L, EIDER);
     id2Basin.put(29432442L, ELBE); // Obere Eider
                                    // (http://de.wikipedia.org/wiki/Eider)
@@ -112,11 +107,11 @@ public class WellknownRivers {
     divides.add(169231236L); // Schleuse Gieselau-Kanal
     divides.add(169231235L); // Schleuse Gieselau-Kanal
     divides.add(176010294L); // Schaalseekanal
-    divides.add(162105959L); // Störkanal
     divides.add(103513817L); // Elbe-Lübeck-Kanal
     divides.add(172109819L); // Elbe-Lübeck-Kanal
     divides.add(30909396L); // Schweriner See, Wallensteingraben
     divides.add(24205659L);
+    divides.add(727924508L); // Küste Peene/Oder
     divides.add(30378663L); // Mittellandkanal
     divides.add(24950057L); // Mittellandkanal
     divides.add(44671142L); // Mittellandkanal
@@ -187,6 +182,7 @@ public class WellknownRivers {
     divides.add(751229797L); // Kanał Bachorze
     divides.add(914971971L); // Oder/Weichsel
     divides.add(931826321L); // Oder/Weichsel
+    divides.add(240614730L); // Küste Oder/Weichsel
 
     divides.add(80965690L); // Canal du Rhône au Rhin
     divides.add(80965316L);
