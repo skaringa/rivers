@@ -10,7 +10,7 @@ prerequisites
 
 * Linux 64 bit with >= 32 GB memory
 
-* Java JDK 8+, Ant
+* Java JDK 11+, Ant
 
 * [libosmium](https://github.com/osmcode/libosmium) 
 
@@ -18,7 +18,6 @@ prerequisites
 
 * [rivermap-osmium-tools](https://github.com/skaringa/rivermap-osmium-tools)
 
-* [Tilemill](https://github.com/tilemill-project/tilemill)
 
 workflow
 --------
@@ -37,7 +36,7 @@ workflow
 
         osmium tags-filter europe-latest.osm.pbf -e tags-filter.txt -o water.pbf
         osmium extract -b 5.0,44.5,20.0,56.0 water.pbf -o water-clipped.pbf
-        osmium_waterway_ids water-clipped.pbf wways.csv wtr.csv
+        osmium_waterway_ids water-clipped.pbf tags-filter.txt wways.csv wtr.csv
     
 5. Run *rivers* with the CSV files generated above to build the river basins: 
 
@@ -49,6 +48,5 @@ workflow
 
         osmium_rivermap -r rsystems.csv water-clipped.pbf waterways.sqlite
 
-7. Use *tilemill* to render, customize, and export the map.
+7. Use a toolset of your choice (tilemill, mapnik, QGIS, etc.) to render and customize the map.
 
-Tilemill project files are located in the `tilemill-project` subdirectory.
