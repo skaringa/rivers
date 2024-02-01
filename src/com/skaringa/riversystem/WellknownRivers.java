@@ -213,6 +213,7 @@ public class WellknownRivers {
     divides.add(380269472L); // Tunnel Ticino - Vorderrhein
     divides.add(781351380L); // Überleitungsstollen Bieltalbach
     divides.add(420267291L); // Überleitungstunnel Rhein/Donau
+    divides.add(1177657613L); // Ablach Rhein/Donau
     
     divides.add(900738718L); // Donauversinkung
     divides.add(900736088L); // dto.
