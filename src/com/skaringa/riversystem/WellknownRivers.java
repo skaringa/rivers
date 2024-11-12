@@ -60,7 +60,6 @@ public class WellknownRivers {
                                    // (http://de.wikipedia.org/wiki/Eider)
     id2Basin.put(36054759L, MAAS); // Rur
     id2Basin.put(9332131L, MAAS); // Niers
-    id2Basin.put(25680743L, MAAS); // Schwalm
     id2Basin.put(28889257L, MAAS); // La Meuse
     id2Basin.put(48872639L, MAAS); // La Chiers
 
@@ -163,13 +162,15 @@ public class WellknownRivers {
     divides.add(302373912L); // Großer Graben
     divides.add(23481759L); // Fossa Eugeniana
     divides.add(26726898L); // Krollbachbifurkation https://www.hoevelhof.de/de/tourismus/sehenswuerdigkeiten/sehenswuerdigkeiten/krollbachbifurkation.php
-    divides.add(753903784L); // Moerskanal
+    //divides.add(753903784L); // Moerskanal -- falsch? Besser:
+    divides.add(203021759L); // Niepkanal
     
     divides.add(82037779L); // Tříhrázný rybník (Donau/Elbe)
     divides.add(81931306L); // unknown (Donau/Elbe)
     divides.add(82080861L); // dibavod:id=207680006300
     divides.add(81453698L); // dibavod:id=131260002300
     divides.add(272086643L); // umělý kanál (Donau/Elbe)
+    divides.add(228225868L); // unknown (Donau/Elbe)
     divides.add(27568398L); // Schwarzenbergischer Schwemmkanal
     divides.add(262751461L); // Schwarzenbergischer Schwemmkanal
     divides.add(340821441L); // Überleitung Hájený potok-Jizera (Oder/Elbe)

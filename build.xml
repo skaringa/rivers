@@ -34,7 +34,7 @@
            encoding="UTF-8" />
   </target>
 
-  <target name="RunRiverSystems" description="run program RiverSystems">
+  <target name="RunRiverSystems" depends="compile" description="run program RiverSystems">
     <echo>RunRiverSystems ${args}</echo>
     <java classname="com.skaringa.riversystem.RiverSystems"
           fork="yes"
