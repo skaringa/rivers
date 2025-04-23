@@ -75,7 +75,6 @@ public class WellknownRivers {
     id2Basin.put(52106448L, ISONZO);
     id2Basin.put(162189624L, TAGLIAMENTO);
 
-    id2Basin.put(123033116L, RHONE);
     id2Basin.put(122130057L, RHONE); // Le Doubs
   }
 
@@ -186,6 +185,8 @@ public class WellknownRivers {
     divides.add(914971971L); // Oder/Weichsel
     divides.add(931826321L); // Oder/Weichsel
     divides.add(240614730L); // Küste Oder/Weichsel
+    divides.add(487511845L); // Kanał Królewski
+    divides.add(258876176L); // Kanał Królewski
 
     divides.add(80965690L); // Canal du Rhône au Rhin
     divides.add(80965316L);
