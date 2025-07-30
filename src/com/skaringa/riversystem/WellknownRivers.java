@@ -75,6 +75,7 @@ public class WellknownRivers {
     id2Basin.put(52106448L, ISONZO);
     id2Basin.put(162189624L, TAGLIAMENTO);
 
+    id2Basin.put(47256084L, RHONE);
     id2Basin.put(122130057L, RHONE); // Le Doubs
   }
 
@@ -201,8 +202,13 @@ public class WellknownRivers {
     
     divides.add(435393183L); // Rhone/Po
     divides.add(405871635L); // Rhone/Po
+    divides.add(1073885732L); // Rhone/Po
     divides.add(398968003L); // Canale del Comio
     divides.add(51920117L); // Canale Marignane Basse
+    divides.add(1415820452L); // Tunnel d'Arnon
+    divides.add(1205984969L); // Galerie de l'Hongrin
+    divides.add(1205984967L); // dto.
+    divides.add(1205984990L); // dto.
 
     divides.add(208688655L); // Maas-Waal Kanaal
     divides.add(79301837L);
@@ -220,6 +226,12 @@ public class WellknownRivers {
     divides.add(900738718L); // Donauversinkung
     divides.add(900736088L); // dto.
     divides.add(900738333L); // dto.
+    
+    divides.add(1098448538L); // seltsame Verbindung Rhein/Donau
+    divides.add(332215413L); // dto.
+    divides.add(1392111408L); // dto.
+    divides.add(1392111409L); // dto.
+    divides.add(1392111410L); // dto.
     
     divides.add(741211480L); // Überleitung Kops-Vermunt
     divides.add(1183699176L); // Bachüberleitung Fasulbach und Rosanna
