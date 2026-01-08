@@ -222,6 +222,7 @@ public class WellknownRivers {
     divides.add(781351380L); // Überleitungsstollen Bieltalbach
     divides.add(420267291L); // Überleitungstunnel Rhein/Donau
     divides.add(1177657613L); // Ablach Rhein/Donau
+    divides.add(1434211351L); // Aitrach Bifurkation bei Blumberg Rhein/Donau
     
     divides.add(900738718L); // Donauversinkung
     divides.add(900736088L); // dto.
