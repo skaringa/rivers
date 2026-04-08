@@ -2,3 +2,4 @@ w/waterway=stream,river,ditch,canal,drain,weir,dam,waterfall,fish_pass,rock_ramp
 w/natural=coastline
 a/natural=water
 a/landuse=reservoir,basin
+r/type=waterway
