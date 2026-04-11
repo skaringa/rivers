@@ -59,7 +59,6 @@ public class WellknownRivers {
     id2Basin.put(29432442L, ELBE); // Obere Eider
                                    // (http://de.wikipedia.org/wiki/Eider)
     id2Basin.put(36054759L, MAAS); // Rur
-    id2Basin.put(9332131L, MAAS); // Niers
     id2Basin.put(28889257L, MAAS); // La Meuse
     id2Basin.put(48872639L, MAAS); // La Chiers
 
@@ -91,7 +90,7 @@ public class WellknownRivers {
     divides.add(30421371L); // Küste Peene rechts
     divides.add(102832365L); // Der Strom
     divides.add(95799872L); // Küste Peene rechts
-    divides.add(28406303L); // Küste Trave rechts
+    divides.add(1360706693L); // Küste Trave rechts
     divides.add(25976489L); // Küste Schlei links
     divides.add(347556100L); // Küste Eider rechts
     divides.add(4100668L); // Küste Elbe rechts
