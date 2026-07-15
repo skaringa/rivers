@@ -216,6 +216,7 @@ public class WellknownRivers {
     divides.add(208687596L); // Kanaal van St. Andries
     divides.add(79718960L);
     divides.add(80258525L); // Nordkanal
+    divides.add(1527120372L); // Maas/Rhein
     
     divides.add(380269472L); // Tunnel Ticino - Vorderrhein
     divides.add(781351380L); // Überleitungsstollen Bieltalbach
