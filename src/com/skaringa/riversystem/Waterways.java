@@ -15,18 +15,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Waterways {
   
-  static Set<String> TYPE_BLACKLIST = new HashSet<String>();
-  static {
-  }
-
   private TLongObjectMap<String> id2Basin = TCollections.synchronizedMap(new TLongObjectHashMap<String>());
 
   private TLongObjectMap<List<Way>> nodeId2WayList = new TLongObjectHashMap<List<Way>>();
@@ -157,16 +151,13 @@ public class Waterways {
         if (line.trim().length() > 0) { // skip blank lines
           String tokens[] = line.split("\\,");
           long id = Long.parseLong(tokens[0]);
-          String type = tokens[1];
-          if (! TYPE_BLACKLIST.contains(type)) {
-            long[] nodes = new long[tokens.length - 2];
-            for (int i = 2; i < tokens.length; ++i) {
-              nodes[i - 2] = Long.parseLong(tokens[i]);
-            }
-            
-            addWay(new Way(id, nodes));
-            wwayCount++;
+          long[] nodes = new long[tokens.length - 1];
+          for (int i = 1; i < tokens.length; ++i) {
+            nodes[i - 1] = Long.parseLong(tokens[i]);
           }
+          
+          addWay(new Way(id, nodes));
+          wwayCount++;
         }
       }
     } finally {
